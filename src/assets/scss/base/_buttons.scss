@@ -12,7 +12,7 @@
   }
 
   &[disabled] {
-    avi-spinner {
+    fl-spinner {
       display: block;
 
       & + span {
@@ -98,7 +98,7 @@
     }
   }
 
-  avi-spinner {
+  fl-spinner {
     display: none;
     margin-top: -6px;
     margin-bottom: -8px;
