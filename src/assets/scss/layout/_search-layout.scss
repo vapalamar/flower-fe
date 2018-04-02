@@ -1,0 +1,186 @@
+@import '../utils/mixins';
+@import '../utils/bootstrap-variables';
+
+::ng-deep {
+  .pac-container {
+    width: calc(20rem - 2px) !important;
+    margin-left: -1rem !important;
+    border-top: 0 none !important;
+    border-top-left-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+  }
+}
+
+.dropdown-list {
+  display: flex;
+
+  li {
+    margin-right: 20px;
+    min-width: 140px;
+    font-size: 15px;
+    position: relative;
+  }
+
+  .location-dropdown {
+    width: 18.2rem;
+  }
+
+  .btn {
+    font-size: 15px;
+  }
+
+  .error-message {
+    position: absolute;
+    margin-top: 0.55rem;
+  }
+}
+
+.search-controls {
+  display: flex;
+  margin: 0 0 21px;
+  font-size: 15px;
+  padding-top: 15px;
+
+  > div {
+    margin-right: 23px;
+  }
+
+  .save {
+    color: #21a3f2;
+
+    span {
+      @include inline-block(top);
+    }
+  }
+
+  .fas {
+    @include inline-block(middle);
+    font-size: 14px;
+  }
+}
+
+.card-frame {
+  font-size: 16px;
+  line-height: 22px;
+  border-top: 1px solid $gray-200;
+  display: flex;
+  margin: 0 0 12px;
+  padding-top: 20px;
+
+  &:first-child {
+    border: none;
+  }
+
+  .img-area {
+    width: 57px;
+    border-radius: 10px;
+    border: 1px solid $gray-200;
+    overflow: hidden;
+    margin-right: 24px;
+    min-height: 50px;
+  }
+
+  .card-info {
+    margin-left: 3px;
+    width: 100%;
+  }
+
+  .point {
+    position: absolute;
+    left: -17px;
+    bottom: 2px;
+  }
+
+  h4 {
+    margin: 0 0 3px;
+    font-size: 20px;
+  }
+}
+
+.card-panel__title-link {
+  color: $gray-900;
+
+  &:hover {
+    color: $gray-600;
+  }
+}
+
+.card-controls {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 10px;
+
+  > * {
+    margin-left: 18px;
+  }
+}
+
+.drop-control {
+  background: transparent;
+
+  span {
+    height: 4px;
+    width: 4px;
+    display: block;
+    border-radius: 50%;
+    background: $gray-500;
+    margin: 0 0 3px;
+  }
+
+  &:after {
+    display: none;
+  }
+}
+
+.services__list {
+  max-height: 80px;
+  overflow: hidden;
+}
+
+.services__tag {
+  padding: 4px 11px 5px;
+  border: 1px solid $gray-200;
+  border-radius: 25px;
+  font-size: 13px;
+  margin: 3px 8px 7px 0;
+  color: $gray-600;
+  @include inline-block(top);
+}
+
+.wrapper-keys {
+  margin: 0 -5px 20px;
+}
+
+.search-keys {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+  margin: 0 -5px 0;
+
+  > div {
+    padding: 7px;
+    background: #e4ecf2;
+    border: 1px solid #e4e9ed;
+    border-radius: 5px;
+    margin: 5px;
+    display: flex;
+    align-items: center;
+
+    .fas {
+      cursor: pointer;
+      margin-left: 7px;
+      font-size: 12px;
+    }
+  }
+
+  > a {
+    color: #3f7ad4;
+
+    &:hover {
+      color: $black;
+    }
+  }
+}

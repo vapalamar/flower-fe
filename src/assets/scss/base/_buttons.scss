@@ -1,0 +1,126 @@
+.btn {
+  &.min-width {
+    min-width: 100px;
+  }
+
+  &.btn-lg {
+    font-size: 15px;
+
+    &.btn-icon {
+      padding: 7px 13px;
+    }
+  }
+
+  &[disabled] {
+    avi-spinner {
+      display: block;
+
+      & + span {
+        display: none;
+      }
+    }
+  }
+
+  &.btn-grey {
+    color: $gray-600;
+    background: $color-spaces;
+    border: 1px solid $gray-400;
+    padding: 13px 18px;
+    &:hover,
+    &.active {
+      color: $black;
+      background: $white;
+    }
+  }
+
+  &.btn-primary {
+    background: $color-lighter-blue;
+    border: 1px solid $color-lighter-blue;
+    color: $white;
+  }
+
+  &.btn-preview {
+    border: 1px solid $color-lighter-blue;
+    color: $color-lighter-blue;
+
+    &:hover {
+      background: $color-lighter-blue;
+      color: $white;
+    }
+  }
+
+  &.btn-text {
+    background: none;
+    padding: 0;
+    border: none;
+    color: $black;
+    outline: none;
+
+    &:focus,
+    &:active {
+      outline: none;
+      background: none;
+      box-shadow: none;
+      color: $black;
+    }
+  }
+
+  &.btn-invite {
+    i {
+      color: $color-lighter-blue;
+      margin-right: 5px;
+    }
+  }
+
+  &-icon {
+    border-color: $gray-400;
+    font-size: 0.7rem;
+    padding: 0.275rem;
+    color: $gray-500;
+
+    &:hover {
+      background: $gray-100;
+    }
+  }
+
+  &-default-pimary {
+    color: $color-lighter-blue;
+    border: 1px solid $gray-400;
+
+    &:hover {
+      background: $gray-100;
+    }
+  }
+
+  &-link {
+    i {
+      font-size: 14px;
+    }
+  }
+
+  avi-spinner {
+    display: none;
+    margin-top: -6px;
+    margin-bottom: -8px;
+  }
+}
+
+.burger {
+  min-width: 0;
+  background: none;
+  border: none;
+  @include inline-block(top);
+  @include rem(width, 28px);
+  @include rem(padding, 5px);
+
+  @include breakpoint(xl) {
+    @include rem(margin, 6px 0 0);
+  }
+
+  span {
+    display: block;
+    background: $gray-300;
+    @include rem(margin, 0 0 4px);
+    @include rem(height, 2px);
+  }
+}

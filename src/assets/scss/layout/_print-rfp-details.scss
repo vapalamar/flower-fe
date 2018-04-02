@@ -1,0 +1,97 @@
+@mixin rfpDetailsPrint {
+  * {
+    -webkit-print-color-adjust: exact;
+    box-shadow: none !important;
+    color: $black !important;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  .panel-wrapper {
+    padding: 0 !important;
+  }
+
+  header {
+    img {
+      -webkit-filter: invert(100%);
+      filter: invert(100%);
+    }
+  }
+
+  .heading {
+    margin-bottom: 20px;
+
+    h1 {
+      margin-top: 20px !important;
+      font-size: 30px !important;
+    }
+  }
+
+  avi-sidenav,
+  header,
+  .deadline-wrapper,
+  button,
+  .icon-area {
+    display: none !important;
+  }
+
+  .details-panel {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .details-box {
+    page-break-inside: avoid;
+  }
+
+  .sidebar-area {
+    background: none !important;
+    padding: 0 !important;
+    margin: 0;
+    overflow: visible !important;
+    width: 100% !important;
+
+    p {
+      margin: 0 0 10px;
+    }
+  }
+
+  .print-break-text {
+    -ms-word-break: break-all;
+    word-break: break-all;
+  }
+
+  .app-version {
+    display: none !important;
+  }
+
+  .details-panel {
+    border: none !important;
+
+    *:not(.heading) {
+      display: none;
+    }
+  }
+}
+
+@mixin bodyPrint {
+  font-size: 14px !important;
+  background: $white;
+  min-width: 0;
+}
+
+@media print {
+  body {
+    @include bodyPrint;
+  }
+
+  @include rfpDetailsPrint;
+}
+
+body.print-mode {
+  @include bodyPrint;
+
+  @include rfpDetailsPrint;
+}

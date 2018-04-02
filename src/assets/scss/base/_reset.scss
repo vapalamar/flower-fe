@@ -1,0 +1,84 @@
+@import '../../../assets/scss/utils/bootstrap-variables';
+@import '../../../assets/scss/utils/mixins';
+
+@-webkit-viewport {
+  width: device-width;
+}
+@-moz-viewport {
+  width: device-width;
+}
+@-ms-viewport {
+  width: device-width;
+}
+@-o-viewport {
+  width: device-width;
+}
+@viewport {
+  width: device-width;
+}
+
+html {
+  @include prefix(box-sizing, border-box);
+}
+
+*,
+*:before,
+*:after {
+  @include prefix(box-sizing, border-box);
+}
+
+* {
+  max-height: 1000000px;
+}
+
+body {
+  color: $body-color;
+  background: $body-bg;
+  font: #{$font-size-base}/#{$line-height-base} $base-font-family;
+  min-width: $base-min-width;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// adaptive images
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+ul,
+ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  color: $link-color;
+  transition: $transition-base;
+}
+
+button,
+a {
+  outline: none;
+  @include animate(all, $animation-speed, ease);
+}
+
+button {
+  background-color: transparent;
+}
+
+mark,
+.mark {
+  padding: 0;
+  background: none;
+  font-size: 14px;
+  color: $gray-600;
+}
+
+.markup-view-reset {
+  * {
+    display: inline-block !important;
+    font-size: 16px !important;
+  }
+}

@@ -1,0 +1,18 @@
+#footer {
+  border-top: 1px solid $gray-300;
+  background: $gray-100;
+  padding: 13px 15px;
+
+  &.sticky-footer {
+    position: fixed;
+    left: 248px;
+    right: 0;
+    bottom: 0;
+    z-index: 99;
+    @include animate(left, $animation-speed, ease);
+  }
+}
+
+avi-sidenav.reduced-state + main #footer.sticky-footer {
+  left: 97px;
+}

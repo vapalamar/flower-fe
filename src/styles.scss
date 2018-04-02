@@ -1,1 +1,35 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import '/assets/scss/utils/bootstrap-variables';
+@import '../node_modules/bootstrap/scss/bootstrap';
+@import '/assets/scss/utils/mixins';
+@import '/assets/scss/utils/functions';
+
+@import '/assets/scss/base/fonts';
+@import '/assets/scss/shared/icon-fonts';
+
+@import '../node_modules/ngx-toastr/toastr-bs4-alert';
+@import '/assets/scss/base/normalize';
+@import '/assets/scss/base/reset';
+@import '/assets/scss/base/typography';
+@import '/assets/scss/base/forms';
+@import '/assets/scss/base/helpers';
+@import '/assets/scss/base/buttons';
+
+@import '/assets/scss/layout/header';
+@import '/assets/scss/layout/footer';
+@import '/assets/scss/layout/common';
+@import '/assets/scss/layout/search-layout';
+
+@import '/assets/scss/shared/modal';
+@import '/assets/scss/shared/dropdown';
+@import '/assets/scss/shared/tabs';
+@import '/assets/scss/layout/side-panel';
+@import '/assets/scss/layout/attached-item';
+@import '/assets/scss/layout/tables';
+@import '/assets/scss/shared/calendar';
+@import '/assets/scss/shared/input-group';
+@import '/assets/scss/shared/toast';
+
+@import '/assets/scss/layout/print-rfp-details';
+@import '/assets/scss/layout/formatted-text';

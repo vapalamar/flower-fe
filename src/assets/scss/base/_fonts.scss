@@ -1,0 +1,32 @@
+@import "../utils/mixins";
+@import "../utils/bootstrap-variables";
+
+// grotesk (Normal)
+// ====================================
+
+@include fonts-include(Grotesk, hkgrotesk-regular-webfont, $font-weight-normal, normal);
+@include fonts-include(Grotesk, hkgrotesk-italic-webfont, $font-weight-normal, italic);
+
+// grotesk (Light)
+// ====================================
+
+@include fonts-include(Grotesk, hkgrotesk-light-webfont, $font-weight-light, normal);
+@include fonts-include(Grotesk, hkgrotesk-lightitalic-webfont, $font-weight-light, italic);
+
+// grotesk (Medium)
+// ====================================
+
+@include fonts-include(Grotesk, hkgrotesk-medium-webfont, $font-weight-medium, normal);
+@include fonts-include(Grotesk, hkgrotesk-mediumitalic-webfont, $font-weight-medium, italic);
+
+// grotesk (Semibold)
+// ====================================
+
+@include fonts-include(Grotesk, hkgrotesk-semibold-webfont, $font-weight-semibold, normal);
+@include fonts-include(Grotesk, hkgrotesk-semibolditalic-webfont, $font-weight-semibold, italic);
+
+// grotesk (Bold)
+// ====================================
+
+@include fonts-include(Grotesk, hkgrotesk-bold-webfont, $font-weight-bold, normal);
+@include fonts-include(Grotesk, hkgrotesk-bolditalic-webfont, $font-weight-bold, italic);

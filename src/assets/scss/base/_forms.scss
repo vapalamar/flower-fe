@@ -1,0 +1,412 @@
+@import '../../../assets/scss/utils/mixins';
+@import '../../../assets/scss/utils/bootstrap-variables';
+
+form,
+fieldset {
+  margin: 0;
+  padding: 0;
+  border-style: none;
+}
+
+label {
+  cursor: pointer;
+
+  sup {
+    color: $color-red;
+  }
+}
+
+input[type='text'],
+input[type='tel'],
+input[type='email'],
+input[type='search'],
+input[type='password'],
+textarea {
+  -webkit-appearance: none;
+  box-sizing: border-box;
+  border: 1px solid $input-border;
+  outline: 0;
+
+  &:focus {
+    border-color: $input-focus-border-color;
+  }
+
+  @include placeholder {
+    color: $placeholder-color;
+  }
+}
+
+select {
+  -webkit-border-radius: 0;
+
+  &.form-select-control {
+    height: $input-height-base;
+    background: none;
+    width: 100%;
+    border: 1px solid $gray-300;
+  }
+}
+
+textarea {
+  resize: vertical;
+  vertical-align: top;
+
+  &.form-control {
+    min-height: 100px;
+    @include rem(max-height, 200px);
+  }
+}
+
+button,
+input[type='button'],
+input[type='reset'],
+input[type='file'],
+input[type='submit'] {
+  -webkit-appearance: none;
+  -webkit-border-radius: 0;
+  cursor: pointer;
+}
+
+.form-group {
+  margin: 0 0 1.5rem;
+  position: relative;
+
+  label {
+    @include inline-block(top);
+    @include rem(margin-bottom, 5px);
+    font-size: 13px;
+    margin-bottom: 3px;
+  }
+
+  .form-control {
+    min-height: $input-height-base - 8;
+    border-radius: 0;
+
+    &.ng-valid,
+    &:focus {
+      outline: none;
+      background: $input-focus-bg;
+      border-color: $input-focus-border-color;
+    }
+
+    &.ng-touched {
+      &.ng-invalid {
+        border-color: $color-red;
+
+        &:focus {
+          border-color: $color-red;
+        }
+      }
+
+      &.ng-valid {
+        border-color: $color-teal-green;
+
+        &.ng-dirty,
+        &:focus {
+          border-color: $color-teal-green;
+        }
+      }
+    }
+  }
+}
+
+.form-group__label-position {
+  position: absolute;
+  bottom: 2px;
+}
+
+.form-label {
+  margin: 1rem 0 2.4rem;
+  position: relative;
+
+  .form-row & {
+    margin: 1.2rem 0 1.3rem;
+    position: relative;
+  }
+
+  .error-message {
+    position: absolute;
+    left: 0;
+    top: 100%;
+  }
+
+  .form-control,
+  .avi-control {
+    font-size: 1rem;
+    @include box-shadow(0, 1px, 3px, $gray-400, $inset: true);
+
+    &.ng-valid,
+    & .form-control.ng-valid,
+    &:focus,
+    &.ng-focused {
+      outline: none;
+      background: $input-focus-bg;
+      border-color: $input-focus-border-color;
+    }
+
+    &:focus,
+    &.ng-focused,
+    &:not(.ng-empty) {
+      + label {
+        @include rem(top, -19px);
+        left: 0;
+        font-size: 0.9rem;
+        color: $gray-900;
+        cursor: default;
+      }
+    }
+
+    &.ng-touched,
+    & .form-control.ng-touched {
+      &.ng-invalid,
+      & .form-control.ng-invalid {
+        border-color: $color-red;
+
+        &:focus {
+          border-color: $color-red;
+        }
+      }
+
+      &.ng-valid,
+      & .form-control.ng-valid {
+        border-color: $color-teal-green;
+
+        &.ng-dirty,
+        & .form-control.ng-dirty {
+          border-color: $color-teal-green;
+        }
+
+        &:focus,
+        & .form-control:focus {
+          border-color: $color-teal-green;
+        }
+      }
+    }
+  }
+
+  > label {
+    color: $gray-500;
+    position: absolute;
+    @include rem(top, 12px);
+    @include rem(left, 17px);
+    transition: all 0.2s ease-in-out;
+    font-size: 1.1rem;
+    z-index: 10;
+    cursor: text;
+  }
+
+  &.form-hint-text {
+    > div {
+      font-size: 14px;
+    }
+
+    > label {
+      top: 2rem;
+    }
+  }
+}
+
+.form-hint {
+  position: absolute;
+  right: 0;
+  @include rem(bottom, -20px);
+
+  button {
+    padding: 0;
+  }
+}
+
+.custom-control {
+  display: flex;
+  align-items: center;
+}
+
+.custom-control-label {
+  cursor: pointer;
+  margin: 0 !important;
+
+  &:before {
+    border: 1px solid $color-lighter-blue;
+  }
+}
+
+.flat-checkbox {
+  label {
+    display: block;
+    background: $gray-300;
+    position: relative;
+    z-index: 1;
+    width: 60px;
+    height: 30px;
+    border-radius: 15px;
+
+    &:before {
+      color: $gray-400;
+      content: '';
+      font-size: 15px;
+      position: absolute;
+      left: 1px;
+      top: 1px;
+    }
+
+    &:after {
+      transition: all 0.3s ease;
+      cursor: pointer;
+      content: '';
+      width: 28px;
+      height: 28px;
+      position: absolute;
+      top: 1px;
+      z-index: 2;
+      left: 1px;
+      background: $white;
+      border-radius: 50%;
+    }
+  }
+
+  &.disabled {
+    pointer-events: none;
+    opacity: 0.7;
+  }
+
+  input[type='checkbox'] {
+    visibility: hidden;
+    position: absolute;
+
+    &:checked + label {
+      background: $color-apple;
+
+      &:after {
+        left: calc(100% - 29px);
+      }
+    }
+  }
+
+  &.user-toggl {
+    user-select: none;
+    label {
+      border-radius: 5px;
+      width: 80px;
+
+      &:after,
+      &:before {
+        font-size: 12px;
+        color: $black;
+      }
+
+      &:after {
+        border-radius: 5px;
+        width: 20px;
+      }
+
+      &:before {
+        content: attr(data-status);
+        top: 4px;
+        left: 0;
+        right: 0;
+        text-align: right;
+        padding: 2px 6px;
+        @include prefix(transition, (all 0.3s ease));
+      }
+    }
+
+    input[type='checkbox'] {
+      &:checked + label {
+        &:after {
+          left: calc(100% - 21px);
+        }
+
+        &:before {
+          content: 'Active';
+          color: $white;
+          text-align: left;
+        }
+      }
+    }
+  }
+}
+
+.error-message {
+  color: $color-red;
+  font-size: 0.8rem;
+  margin-top: 0.1rem;
+}
+
+.form-control {
+  min-height: $input-height-base;
+
+  &:focus {
+    border-color: $gray-400 !important;
+  }
+
+  &.disabled {
+    border-radius: 0;
+
+    .placeholder {
+      cursor: not-allowed;
+      background: $gray-200;
+    }
+  }
+}
+
+.ui-inputtext {
+  height: $input-height-base - 8 !important;
+  border: 1px solid $gray-400 !important;
+  border-radius: 0 !important;
+  padding: 0.375rem 0.75rem !important;
+}
+
+p-calendar {
+  .ui-calendar {
+    width: 100%;
+  }
+
+  input {
+    width: 100%;
+    border: none !important;
+    padding: 0 !important;
+  }
+}
+
+.input-group_button {
+  border-right: 0;
+}
+
+.input-group {
+  .btn {
+    padding: 0.83rem 1.6rem;
+    font-size: 15px;
+  }
+
+  .form-group-area {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+
+    position: relative;
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    width: 1%;
+    margin-bottom: 0;
+    select {
+      display: block;
+    }
+  }
+}
+
+.form-group-area {
+  border: 1px solid $gray-200;
+  border-radius: 3px;
+  padding: 3px 16px;
+
+  select {
+    border: none;
+    padding: 0;
+  }
+
+  label {
+    font-size: 13px;
+    margin: 0;
+    color: $gray-600;
+  }
+}

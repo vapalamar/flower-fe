@@ -1,0 +1,358 @@
+@import '../utils/mixins';
+@import '../utils/bootstrap-variables';
+
+// list reset
+%listreset {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+// clearfix
+%clearfix {
+  &:after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+}
+
+.clearfix {
+  @extend %clearfix;
+}
+
+// transition
+%transition {
+  transition: all 0.3s ease-in-out;
+}
+
+// justify nav
+%justify {
+  text-align: justify;
+  font-size: 1px;
+  line-height: 0;
+  > * {
+    display: inline-block;
+    vertical-align: top;
+    text-align: left;
+    font-size: $font-size-base;
+    line-height: $line-height-base;
+  }
+  &:after {
+    content: '';
+    width: 100%;
+    display: inline-block;
+    vertical-align: top;
+  }
+}
+
+//margin
+.m0 {
+  margin: 0 !important;
+}
+.ma {
+  margin: 0 auto;
+}
+.mt5 {
+  margin-top: 5px;
+}
+.mt10 {
+  margin-top: 10px;
+}
+.mt15 {
+  margin-top: 15px;
+}
+.mt20 {
+  margin-top: 20px;
+}
+.mt25 {
+  margin-top: 25px;
+}
+.mt30 {
+  margin-top: 30px;
+}
+.mt35 {
+  margin-top: 35px;
+}
+.mt40 {
+  margin-top: 40px;
+}
+.mt45 {
+  margin-top: 45px;
+}
+.mt50 {
+  margin-top: 50px;
+}
+
+.mb5 {
+  margin-bottom: 5px;
+}
+.mb10 {
+  margin-bottom: 10px;
+}
+.mb15 {
+  margin-bottom: 15px;
+}
+.mb20 {
+  margin-bottom: 20px;
+}
+.mb25 {
+  margin-bottom: 25px;
+}
+.mb30 {
+  margin-bottom: 30px;
+}
+.mb35 {
+  margin-bottom: 35px;
+}
+.mb40 {
+  margin-bottom: 40px;
+}
+.mb45 {
+  margin-bottom: 45px;
+}
+.mb50 {
+  margin-bottom: 50px;
+}
+.mb70 {
+  margin-bottom: 70px;
+}
+.mb100 {
+  margin-bottom: 100px;
+}
+
+.ml5 {
+  margin-left: 5px;
+}
+.ml10 {
+  margin-left: 10px;
+}
+.ml15 {
+  margin-left: 15px;
+}
+.ml20 {
+  margin-left: 20px;
+}
+.ml25 {
+  margin-left: 25px;
+}
+.ml30 {
+  margin-left: 30px;
+}
+.ml35 {
+  margin-left: 35px;
+}
+.ml40 {
+  margin-left: 40px;
+}
+.ml45 {
+  margin-left: 45px;
+}
+.ml50 {
+  margin-left: 50px;
+}
+
+.mr5 {
+  margin-right: 5px;
+}
+.mr10 {
+  margin-right: 10px;
+}
+.mr15 {
+  margin-right: 15px;
+}
+.mr20 {
+  margin-right: 20px !important;
+}
+.mr25 {
+  margin-right: 25px;
+}
+.mr30 {
+  margin-right: 30px;
+}
+.mr35 {
+  margin-right: 35px;
+}
+.mr40 {
+  margin-right: 40px;
+}
+.mr45 {
+  margin-right: 45px;
+}
+.mr50 {
+  margin-right: 50px;
+}
+
+//padding
+.p0 {
+  padding: 0 !important;
+}
+.pl20 {
+  padding-left: 20px;
+}
+.pb50 {
+  padding-bottom: 50px;
+}
+
+.pt5 {
+  padding-top: 5px;
+}
+.pt10 {
+  padding-top: 10px;
+}
+.pt15 {
+  padding-top: 15px;
+}
+.pt20 {
+  padding-top: 20px;
+}
+.pt25 {
+  padding-top: 25px;
+}
+.pt30 {
+  padding-top: 30px;
+}
+.pt35 {
+  padding-top: 35px;
+}
+.pt40 {
+  padding-top: 40px;
+}
+.pt45 {
+  padding-top: 45px;
+}
+.pt50 {
+  padding-top: 50px;
+}
+
+.fs-12 {
+  font-size: 12px;
+}
+
+.fs-14 {
+  font-size: 14px;
+}
+
+.fs-15 {
+  font-size: 15px;
+}
+
+.overflow-ellipsis {
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.animate {
+  @include prefix(transition, (all 0.3s ease));
+}
+
+// Aligning Elements
+
+.align-top {
+  @include inline-block(top);
+}
+.align-bottom {
+  @include inline-block(bottom);
+}
+.align-middle {
+  @include inline-block(middle);
+}
+
+//width
+
+.full-width {
+  width: 100% !important;
+}
+
+//borders
+
+.bb1 {
+  border-bottom: 1px solid $black;
+}
+.bb2 {
+  border-bottom: 2px solid $black;
+}
+.bn {
+  border: none;
+}
+.botn {
+  border-top: none;
+}
+.bblrn {
+  border-bottom-left-radius: 0 !important;
+}
+.bbrrn {
+  border-bottom-right-radius: 0 !important;
+}
+.btlrn {
+  border-top-left-radius: 0 !important;
+}
+.btrrn {
+  border-top-right-radius: 0 !important;
+}
+
+.dib {
+  @include inline-block(top);
+}
+
+.vat {
+  vertical-align: top;
+}
+
+.vab {
+  vertical-align: bottom;
+}
+
+.block {
+  display: block;
+}
+
+.link-gray {
+  color: $black;
+
+  &:hover {
+    color: $gray-600;
+  }
+}
+
+.simple-link {
+  color: $color-light-blue !important;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.text-grey {
+  color: $gray-500;
+}
+
+.text-mark {
+  color: $color-red;
+}
+
+.height-100 {
+  min-height: 100vh;
+}
+
+.bg-white {
+  background: $white !important;
+}
+
+.relative {
+  position: relative;
+}
+
+.box-shadow {
+  @include box-shadow(0, 0, 8px, rgba(0, 0, 0, 0.2), $inset: false);
+}
+
+.bg-gray-100 {
+  background: $gray-100;
+}
+
+.bg-gray-200 {
+  background: $gray-200;
+}

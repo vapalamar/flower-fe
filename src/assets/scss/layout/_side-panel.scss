@@ -1,0 +1,53 @@
+.side-panel {
+  min-height: 100%;
+  background: $white;
+  max-width: 547px;
+  margin: 0 0 0 auto;
+
+  .side-content {
+    min-height: 100vh;
+    border-radius: 0;
+    border: none;
+  }
+
+  .side-header {
+    background: $gray-100;
+    @include rem(padding, 15px 26px 17px);
+
+    h5 {
+      margin: 0;
+    }
+  }
+
+  .tab-container {
+    flex: 1 0 auto;
+  }
+
+  .tab-content {
+    @include rem(padding, 22px);
+  }
+
+  .search-control {
+    border: none;
+    margin: 0 0 12px;
+    box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.2);
+    height: 44px;
+  }
+
+  .service-area {
+    align-items: start;
+
+    .img-area {
+      margin-left: 10px;
+    }
+  }
+
+  .service-text {
+    width: 90%;
+  }
+
+  .service-control {
+    display: flex;
+    align-items: center;
+  }
+}

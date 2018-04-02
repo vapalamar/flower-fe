@@ -1,0 +1,44 @@
+.modal-dialog {
+  .logo {
+    width: 40px;
+  }
+}
+
+.modal.slide-left .modal-dialog {
+  transition: transform 0.45s ease-out, opacity 0.45s ease-out;
+  transform: translate(100%, 0);
+  opacity: 0;
+}
+
+.modal.slide-left.show .modal-dialog {
+  transform: translate(0, 0);
+  opacity: 1;
+}
+
+.modal-preview-lg {
+  min-width: 940px;
+  max-width: 94%;
+
+  .heading-information,
+  .modal-content {
+    overflow: hidden;
+  }
+
+  .vendor-banner {
+    z-index: 1;
+  }
+
+  .vendor-avatar {
+    z-index: 3;
+  }
+
+  .badge-block {
+    button {
+      display: none;
+    }
+  }
+
+  .heading-information {
+    padding-bottom: 5px;
+  }
+}

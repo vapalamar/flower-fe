@@ -1,0 +1,13 @@
+.ui-datepicker .ui-datepicker-header .ui-datepicker-prev,
+.ui-datepicker .ui-datepicker-header .ui-datepicker-next {
+  top: 0.7rem !important;
+
+  &::before {
+    display: none !important;
+  }
+
+  span {
+    font-size: 1.2rem;
+    display: block !important;
+  }
+}

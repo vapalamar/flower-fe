@@ -1,0 +1,56 @@
+.tab-nav {
+  display: flex;
+  align-items: center;
+  margin-bottom: -2px;
+
+  li {
+    position: relative;
+    @include rem(margin-right, 1px);
+
+    &.active {
+      @extend .active-tab-state;
+
+      button {
+        color: $color-lighter-blue;
+      }
+    }
+
+    button,
+    a.btn {
+      text-transform: capitalize;
+      color: $gray-500;
+      @include rem(padding, 12px 8px 17px);
+      font-size: 17px;
+      display: block;
+
+      &:hover {
+        @extend .active-tab-state;
+      }
+    }
+  }
+}
+
+.active-tab-state {
+  color: $color-lighter-blue;
+
+  &:before {
+    position: absolute;
+    content: '';
+    border-bottom: 2px solid $color-lighter-blue;
+    right: 0;
+    left: 0;
+    bottom: 0;
+  }
+}
+
+.header__title {
+  @include rem(font-size, 16px);
+  color: $gray-500;
+  letter-spacing: 4px;
+  margin: 0;
+  text-transform: uppercase;
+
+  @include breakpoint(1200px) {
+    letter-spacing: 2px;
+  }
+}

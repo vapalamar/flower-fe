@@ -1,0 +1,60 @@
+@import "../utils/mixins";
+@import "../utils/bootstrap-variables";
+
+@include fonts-include(icomoon, icomoon, normal, normal, $icomoon: true);
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-vendors:before {
+  content: "\e903";
+  color: #c6d6e1;
+}
+.icon-home:before {
+  content: "\e909";
+  color: #c6d6e1;
+}
+.icon-billing:before {
+  content: "\e900";
+  color: #c6d6e1;
+}
+.icon-company:before {
+  content: "\e901";
+  color: #c6d6e1;
+}
+.icon-events:before {
+  content: "\e902";
+  color: #cad9e3;
+}
+.icon-messages:before {
+  content: "\e904";
+  color: #c6d6e1;
+}
+.icon-postings:before {
+  content: "\e905";
+  color: #c6d6e1;
+}
+.icon-reviews:before {
+  content: "\e906";
+  color: #c6d6e1;
+}
+.icon-rfp:before {
+  content: "\e907";
+  color: #c6d6e1;
+}
+.icon-settings:before {
+  content: "\e908";
+  color: #cad9e3;
+}

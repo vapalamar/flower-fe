@@ -1,0 +1,164 @@
+// Fonts
+$base-font-base:              "Arial", "Helvetica Neue", "Helvetica", sans-serif;
+$base-font-sans-serif:        'Grotesk', $base-font-base !default;
+
+$base-font-family:            $base-font-sans-serif !default;
+
+// Body
+$font-size-base:              1rem;
+$line-height-base:            1.2 !default;
+
+// Colors
+
+$white:         #fff !default;
+$gray-100:      #f8f9fa !default;
+$gray-200:      #e5eaec !default;
+$gray-300:      #dee2e6 !default;
+$gray-400:      #ced4da !default;
+$gray-500:      #adb5bd !default;
+$gray-600:      #868e96 !default;
+$gray-700:      #495057 !default;
+$gray-800:      #343a40 !default;
+$gray-900:      #212529 !default;
+$black:         #000 !default;
+
+$color-orange:          #f76b1c;
+$color-red:             #ed422e;
+$color-light-blue:      #0099e6;
+$color-lighter-blue:    #21A3F2;
+$color-blue:            #1D62CE;
+$color-dark-blue:       #405772;
+$color-teal-green:      #43b392;
+$color-apple:           #5BC846;
+$color-primary-lighter: #E1F4FE;
+$color-spaces: #f7f8fa;
+
+//////
+$primary:       $color-light-blue !default;
+$secondary:     $gray-600 !default;
+$success:       $color-teal-green !default;
+$info:          $color-lighter-blue !default;
+$warning:       #fc3 !default;
+$danger:        $color-red !default;
+
+$body-bg:       $white !default;
+$body-color:    $gray-800 !default;
+
+// Links
+//
+// Style anchor elements.
+
+$link-color:                    $primary;
+$link-decoration:               none !default;
+$link-hover-color:              $color-dark-blue;
+$link-hover-decoration:         $link-decoration !default;
+
+// Grid containers
+//
+// Define the maximum width of `.container` for different screen sizes.
+
+$container-max-widths: (
+  sm: 960px,
+  md: 960px,
+  lg: 960px,
+  xl: 1200px
+) !default;
+
+$base-min-width:              960px;
+
+$font-weight-light:           300 !default;
+$font-weight-normal:          400 !default;
+$font-weight-medium:          500 !default;
+$font-weight-semibold:        600 !default;
+$font-weight-bold:            700 !default;
+
+$headings-font-weight:        $font-weight-bold !default;
+
+$transition-base:             all .2s ease-in-out !default;
+$transition-fade:             opacity .15s linear !default;
+$font-family-sans-serif:      -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !default;
+
+
+$headings-margin-top:         0;
+$headings-margin-bottom:      1rem !default;
+
+$headings-font-weight:        $font-weight-bold !default;
+$headings-line-height:        1.2 !default;
+
+$border-radius:               0.3rem;
+
+// Allows for customizing button radius independently from global border radius
+$btn-border-radius:           $border-radius !default;
+
+//FORMS
+$input-btn-focus-width:       .2rem !default;
+$input-btn-focus-color:       rgba(0, 153, 230, .25) !default;
+$input-btn-focus-box-shadow:  none;
+
+$input-bg:                    $white !default;
+
+$input-color:                 $gray-700 !default;
+
+$input-border:                $gray-400;
+$input-color:                 $gray-700 !default;
+$input-border-color:          $input-border !default;
+
+$input-box-shadow:            none;
+$input-border-radius:         $border-radius !default;
+
+$input-focus-bg:              $white !default;
+$input-focus-border-color:    $color-light-blue;
+$input-focus-color:           $input-color !default;
+$input-height-base:           44px;
+$input-placeholder-color:     $gray-600 !default;
+$form-group-margin-bottom:    1.2rem !default;
+$placeholder-color:           $gray-500 !default;
+
+// Liks
+$base-link-color:             $color-light-blue;
+
+// Buttons
+$btn-color:                   $white !default;
+$btn-background:              $black !default;
+$btn-padding:                 0.3em 0.5em !default;
+$btn-font-size:               inherit !default;
+
+// Headers
+$h1-font-size:                $font-size-base * 2.5 !default;
+$h2-font-size:                $font-size-base * 2 !default;
+$h3-font-size:                $font-size-base * 1.75 !default;
+$h4-font-size:                $font-size-base * 1.5 !default;
+$h5-font-size:                $font-size-base * 1.25 !default;
+$h6-font-size:                $font-size-base !default;
+
+$headings-font-family: inherit !default;
+$headings-color: inherit !default;
+
+$state-success-text:          $color-teal-green;
+
+$text-muted:                  $gray-500;
+//PROGRESS BAR
+
+$progress-border-radius:      3px;
+
+//WELLS
+
+$well-bg:                     $gray-200;
+$well-border:                 $gray-200;
+
+$animation-speed:             0.3s;
+
+$custom-control-indicator-size:         1.2rem !default;
+$custom-control-indicator-bg:           $white !default;
+$custom-control-indicator-box-shadow:   inset 0 .25rem .25rem rgba($black, .1) !default;
+
+$custom-control-indicator-disabled-bg:  $gray-200 !default;
+$custom-control-label-disabled-color:   $gray-600 !default;
+
+$custom-control-indicator-checked-color:        $color-light-blue !default;
+$custom-control-indicator-checked-box-shadow:   none !default;
+
+$custom-control-indicator-checked-bg:           $color-primary-lighter !default;
+
+$custom-control-gutter:                 2rem !default;
+//$custom-control-spacer-x:               5rem !default;

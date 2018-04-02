@@ -1,0 +1,53 @@
+@import '../../assets/scss/utils/mixins';
+@import '../../assets/scss/utils/custom-variables';
+@import '../../assets/scss/utils/bootstrap-variables';
+
+.logo-area {
+  z-index: 1;
+  position: relative;
+  display: inline-table;
+  width: 640px;
+}
+
+.auth-area {
+  width: 100%;
+}
+
+.auth-in-page {
+  > .col {
+    padding: 4rem 2rem 2rem;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+
+    &.side-left {
+      background: $white;
+    }
+
+    &.side-right {
+      background: url('#{$assets}/banners/avisare-bg-still-desktop.jpg') no-repeat center right;
+      @include prefix(background-size, cover);
+      color: $white;
+      position: relative;
+      font-size: 1.2rem;
+      justify-content: flex-end;
+    }
+  }
+}
+
+.logo-box {
+  margin-bottom: 80px;
+
+  a {
+    @include inline-block(top);
+    opacity: 1;
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+}
+
+.text-help {
+  font-size: 0.9rem;
+}

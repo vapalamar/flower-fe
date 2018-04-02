@@ -1,0 +1,178 @@
+.location {
+  display: flex;
+  font-size: 15px;
+  position: relative;
+}
+
+.overlay {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.5);
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+}
+
+.service-area {
+  width: 380px;
+  border: 1px solid $gray-500;
+  padding: 13px 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .service-content {
+    display: flex;
+    align-items: center;
+  }
+
+  .img-area {
+    background: $gray-100;
+    height: 44px;
+    width: 44px;
+    margin-right: 15px;
+    border-radius: 4px;
+  }
+
+  strong {
+    font-size: 17px;
+    display: block;
+  }
+
+  .fas {
+    cursor: pointer;
+    font-size: 14px;
+    color: $gray-500;
+  }
+
+  .fa-times {
+    margin-left: 10px;
+  }
+}
+
+.company-categories {
+  display: flex;
+  margin: 0 0 10px;
+  font-size: 14px;
+  line-height: 19px;
+
+  > div {
+    margin: 0 10px 0 0;
+    min-width: 108px;
+  }
+
+  span {
+    margin-right: 6px;
+  }
+}
+
+.only-inline {
+  display: inline;
+
+  * {
+    margin-right: 7px;
+    display: inline;
+  }
+}
+
+.details-box {
+  margin-bottom: 35px;
+}
+
+p {
+  .btn-link {
+    padding: 0;
+    vertical-align: top;
+  }
+}
+
+dl {
+  dt {
+    float: left;
+    width: 100px;
+  }
+
+  dd {
+    overflow: hidden;
+  }
+}
+
+.modal-xl {
+  max-width: 1000px;
+}
+
+.cropper-position {
+  display: block;
+  margin: 0 auto;
+}
+
+.user-photo {
+  width: 130px;
+  margin-bottom: 15px;
+}
+
+.accordion-toggle {
+  strong{
+    position: relative;
+  }
+}
+
+.accordion-count {
+  position: absolute;
+  left: -20px;
+  top: 2px;
+}
+
+.details-accordion {
+  .panel-default {
+    border: none;
+    background: none;
+    border-radius: 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+  }
+
+  .card-header {
+    background: none;
+    border: none;
+  }
+
+  .panel-heading {
+    border: none;
+    cursor: pointer;
+  }
+
+  .card-body {
+    border: none;
+  }
+
+  .fa {
+    @include animate(transform, $animation-speed, ease);
+  }
+
+  .panel-open {
+    .fa {
+      transform: rotate(-180deg);
+    }
+  }
+}
+
+.preview-delete {
+  @include rem(width, 20px);
+  @include rem(height, 20px);
+  background-color: rgba(0, 0, 0, 0.3);
+  border-bottom-left-radius: 3px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: $white;
+  text-align: center;
+  @include rem(line-height, 20px);
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.1s ease-in-out;
+  z-index: 20;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+}
