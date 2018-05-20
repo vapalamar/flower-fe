@@ -23,7 +23,7 @@ export class AuthEffects {
     private api: ApiService,
     private redirect: RedirectService,
     private injector: Injector,
-    public afAuth: AngularFireAuth
+    private afAuth: AngularFireAuth
   ) {}
 
   @Effect()
@@ -45,18 +45,4 @@ export class AuthEffects {
         return empty();
       }),
     );
-
-  // @Effect()
-  // refreshToken$: Observable<Action> = this.actions$.ofType(authActions.REFRESH_TOKEN).pipe(
-  //   mergeMap(() =>
-  //     this.api.auth.refreshToken(this.token.refreshToken).pipe(
-  //       mergeMap(({ accessToken, refreshToken }) => {
-  //         this.token.accessToken = accessToken;
-  //         this.token.refreshToken = refreshToken;
-  //         return of({ type: authActions.REFRESH_TOKEN_SUCCESS, accessToken });
-  //       }),
-  //       catchError(() => of({ type: authActions.REFRESH_TOKEN_FAILED })),
-  //     )
-  //   ),
-  // );
 }

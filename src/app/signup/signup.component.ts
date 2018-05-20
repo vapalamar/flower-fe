@@ -10,8 +10,10 @@ import { Observable } from 'rxjs/Observable';
 import { combineLatest } from 'rxjs/observable/combineLatest';
 import { of } from 'rxjs/observable/of';
 import { _throw } from 'rxjs/observable/throw';
-import { filter, finalize, find, mergeMap, tap } from 'rxjs/operators';
+import { filter, finalize, find, mergeMap, tap, first } from 'rxjs/operators';
 import { Subscription } from 'rxjs/Subscription';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { firebase } from '@firebase/app';
 
 import { ApiService } from '../api';
 import { defaultImage, imageSize } from '../app.constants';
@@ -20,6 +22,9 @@ import { AppState } from '../reducers';
 import { FileHelperService } from '../shared/file-helper/file-helper.service';
 import { RedirectService } from '../shared/redirect/redirect.service';
 import * as validators from '../shared/validators/validators';
+import { AngularFireDatabase } from 'angularfire2/database';
+import { fromPromise } from 'rxjs/observable/fromPromise';
+import { switchMap } from 'rxjs/operator/switchMap';
 
 const stepsValidityConf = [
   ['user.firstName', 'user.lastName', 'user.email', 'user.password'],
@@ -78,6 +83,8 @@ export class SignUpComponent extends BaseComponent implements OnInit {
     private store: Store<AppState>,
     private fileHelper: FileHelperService,
     @Inject(PLATFORM_ID) private platformId: Object,
+    private afAuth: AngularFireAuth,
+    private afDB: AngularFireDatabase
   ) {
     super();
   }
@@ -167,17 +174,25 @@ export class SignUpComponent extends BaseComponent implements OnInit {
     });
   }
 
-  createProfile() {
-    const companyData = this.compileData();
-    const gtmPayload = {
-      email: this.form.get(['user', 'email']).value,
-      firstName: this.form.get(['user', 'firstName']).value,
-      lastName: this.form.get(['user', 'lastName']).value,
-      company: this.form.get(['company', 'name']).value,
-      companyType: this.form.get(['company', 'type']).value,
-    };
-
+  async createProfile() {
+    const user = this.form.get('user').value;
     this.formDisabled = true;
+
+    const createUser$ = fromPromise(this.afAuth.auth.createUserWithEmailAndPassword(user.email, user.password));
+    const userData = id => this.afDB.database.ref(`/users/${id}`).set({
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+      role: 'client'
+    });
+    const userData$ = () => this.afAuth.authState.pipe(
+      filter(u => u && !!u.uid),
+      mergeMap(token => fromPromise(userData(token.uid)))
+    );
+    createUser$.pipe(mergeMap(userData$), first()).subscribe({
+      next: () => this.showSuccessModal(),
+      complete: () => this.formDisabled = false
+    });
   }
 
   compileData() {
