@@ -19,11 +19,14 @@
     "@angular/platform-browser": "^5.2.0",
     "@angular/platform-browser-dynamic": "^5.2.0",
     "@angular/router": "^5.2.0",
+    "@ngrx/effects": "^5.2.0",
     "@ngrx/router-store": "^5.2.0",
     "@ngrx/store": "^5.2.0",
     "angular2-virtual-scroll": "^0.3.2",
+    "angularfire2": "^5.0.0-rc.9",
     "bootstrap": "^4.0.0",
     "core-js": "^2.4.1",
+    "firebase": "^5.0.3",
     "moment-timezone": "^0.5.14",
     "ng2-img-cropper": "^0.9.0",
     "ngx-bootstrap": "^2.0.3",
@@ -33,7 +36,8 @@
     "primeng": "^5.2.4",
     "quill": "^1.3.6",
     "rxjs": "^5.5.6",
-    "zone.js": "^0.8.19"
+    "zone.js": "^0.8.19",
+    "zxcvbn": "^4.4.2"
   },
   "devDependencies": {
     "@angular/cli": "~1.7.3",
@@ -43,6 +47,7 @@
     "@types/jasminewd2": "~2.0.2",
     "@types/moment-timezone": "^0.5.4",
     "@types/node": "~6.0.60",
+    "@types/zxcvbn": "^4.4.0",
     "codelyzer": "^4.0.1",
     "jasmine-core": "~2.8.0",
     "jasmine-spec-reporter": "~4.2.1",
