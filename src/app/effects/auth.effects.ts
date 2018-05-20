@@ -15,6 +15,7 @@ import { ApiService } from '../api';
 import { RedirectService } from '../shared/redirect/redirect.service';
 import { User } from '../models';
 import { fromPromise } from 'rxjs/observable/fromPromise';
+import { _throw } from 'rxjs/observable/throw';
 
 @Injectable()
 export class AuthEffects {
@@ -30,10 +31,13 @@ export class AuthEffects {
   login$ = this.actions$.ofType(authActions.LOGIN).pipe(
     map(({credentials}: authActions.Login) => credentials),
     mergeMap((credentials: any) => {
-      return fromPromise(this.afAuth.auth.signInWithEmailAndPassword(credentials.email, credentials.password));
+      return fromPromise(
+        this.afAuth.auth.signInWithEmailAndPassword(credentials.email, credentials.password)
+      ).pipe(catchError(e => of(e)));
     }),
-    map(user => ({type: authActions.LOGIN_SUCCESS, user})),
-    catchError(({ error }: HttpErrorResponse) => of({ type: authActions.LOGIN_FAILED, error })),
+    map(data => data.error || data.message 
+      ? { type: authActions.LOGIN_FAILED, error: data.error || { message: data.message } } 
+      : ({type: authActions.LOGIN_SUCCESS, user: data})),
   );
 
   @Effect()
