@@ -12,11 +12,15 @@ import { EditorModule } from 'primeng/components/editor/editor';
 
 import { ControlMessagesComponent } from './control-messages/control-messages.component';
 import { SpinnerComponent } from './spinner/spinner.component';
+import { PasswordComponent } from './password/password.component';
+import { RedirectService } from './redirect/redirect.service';
+import { FileHelperService } from './file-helper/file-helper.service';
 
 const modules = [];
 const components = [
   ControlMessagesComponent,
-  SpinnerComponent
+  SpinnerComponent,
+  PasswordComponent
 ];
 
 @NgModule({
@@ -46,7 +50,7 @@ export class SharedModule {
         // HttpFormDataService,
         // AuthenticatedGuard,
         // NonAuthenticatedGuard,
-        // RedirectService,
+        RedirectService,
         // RoleVendorGuard,
         // RoleClientGuard,
         // ConfirmDeactivateGuard,
@@ -61,7 +65,7 @@ export class SharedModule {
         // ModernBrowserGuard,
         // ModernBrowserService,
         // FormHelperService,
-        // FileHelperService,
+        FileHelperService,
       ],
     };
   }

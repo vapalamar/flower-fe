@@ -14,6 +14,7 @@ import { AppComponent } from './app.component';
 import { AuthLayoutComponent } from './auth-layout/auth-layout.component';
 import { reducers } from './reducers';
 import { SharedModule } from './shared/shared.module';
+import { ApiModule } from './api/api.module';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { SharedModule } from './shared/shared.module';
     ToastrModule.forRoot(),
     NgxMaskModule.forRoot({ dropSpecialCharacters: false }),
     TooltipModule.forRoot(),
+    ApiModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

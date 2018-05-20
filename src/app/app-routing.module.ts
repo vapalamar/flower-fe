@@ -5,24 +5,30 @@ import { AuthLayoutComponent } from './auth-layout/auth-layout.component';
 const routes: Routes = [
   {
     path: '',
-    component: AuthLayoutComponent,
     children: [
       {
-        path: 'login',
-        loadChildren: 'app/login/login.module#LoginModule',
+        path: 'signup',
+        children: [
+          {
+            path: '',
+            loadChildren: 'app/signup/signup.module#SignUpModule',
+          },
+        ],
       },
-      // {
-      //   path: 'reset-password',
-      //   loadChildren: 'app/reset-password/reset-password.module#ResetPasswordModule',
-      // },
-      // {
-      //   path: 'set-password',
-      //   loadChildren: 'app/set-password/set-password.module#SetPasswordModule',
-      // },
       {
-        path: '**',
-        redirectTo: '/login',
-        pathMatch: 'full',
+        path: '',
+        component: AuthLayoutComponent,
+        children: [
+          {
+            path: 'login',
+            loadChildren: 'app/login/login.module#LoginModule',
+          },
+          {
+            path: '**',
+            redirectTo: '/login',
+            pathMatch: 'full',
+          },
+        ],
       },
     ],
   },
@@ -31,6 +37,5 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  providers: []
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
