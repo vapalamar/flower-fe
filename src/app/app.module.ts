@@ -22,11 +22,13 @@ import { effects } from './effects';
 import { environment } from '../environments/environment';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AppLayoutComponent } from './app-layout/app-layout.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AuthLayoutComponent
+    AuthLayoutComponent,
+    AppLayoutComponent
   ],
   imports: [
     BrowserModule,

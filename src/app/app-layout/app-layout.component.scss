@@ -1,0 +1,62 @@
+@import '../../assets/scss/utils/mixins';
+@import '../../assets/scss/utils/functions';
+@import '../../assets/scss/utils/bootstrap-variables';
+
+
+.page-layout {
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
+#content {
+  -ms-flex: 1;
+  flex: 1;
+}
+
+.panel-wrapper {
+  @include rem(padding, 35px 30px 80px);
+
+  @include breakpoint(xl) {
+    @include rem(padding, 10px 10px 80px);
+  }
+}
+
+.panel-body {
+  background: $white;
+  border-radius: 5px;
+  @include rem(padding, 20px);
+  border: solid 1px #e0e6ea;
+}
+
+.box {
+  @include rem(margin-bottom, 15px);
+  @include rem(padding, 15px);
+}
+
+// TODO Please remove this styles
+.align-items-center {
+  align-items: center !important;
+}
+
+.panel {
+  &-heading {
+    font-size: 18px;
+  }
+
+  &-content {
+    padding: 15px;
+    @include rem(padding, 15px);
+    margin-bottom: 10px;
+  }
+}
+
+.box-shadow {
+  @include box-shadow(0, 0, 8px, rgba(0, 0, 0, 0.2), $inset: false);
+}
+
+.has-shadow {
+  box-shadow: 0 2px 2px 0 #edeff4;
+}

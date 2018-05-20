@@ -15,12 +15,16 @@ import { SpinnerComponent } from './spinner/spinner.component';
 import { PasswordComponent } from './password/password.component';
 import { RedirectService } from './redirect/redirect.service';
 import { FileHelperService } from './file-helper/file-helper.service';
+import { SidenavComponent } from './sidenav/sidenav.component';
+import { HeaderComponent } from './header/header.component';
 
 const modules = [];
 const components = [
   ControlMessagesComponent,
   SpinnerComponent,
-  PasswordComponent
+  PasswordComponent,
+  SidenavComponent,
+  HeaderComponent
 ];
 
 @NgModule({

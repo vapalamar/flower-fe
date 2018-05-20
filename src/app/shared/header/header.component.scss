@@ -1,0 +1,64 @@
+@import '../../../assets/scss/utils/mixins';
+@import '../../../assets/scss/utils/functions';
+@import '../../../assets/scss/utils/bootstrap-variables';
+
+.header {
+  background-color: $white;
+  border-bottom: 1px solid $gray-200;
+  position: relative;
+  @include rem(padding, 3px 10px 3px 30px);
+
+  .logo {
+    @include rem(width, 100px);
+  }
+}
+
+.nav {
+  display: flex;
+  flex-direction: row;
+
+  &.navbar-nav {
+    justify-content: flex-end;
+    align-items: center;
+    height: 50px;
+
+    > li {
+      margin: 0 0 0 20px;
+      font-size: 20px;
+
+      a {
+        display: block;
+        color: $gray-900;
+        @include rem(font-size, 15px);
+        position: relative;
+
+        &:hover {
+          color: $color-lighter-blue;
+        }
+      }
+    }
+  }
+}
+
+.navbar-nav {
+  .dropdown-menu {
+    position: absolute;
+  }
+}
+
+.company-panel {
+  position: relative;
+  max-width: 195px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  .img-area {
+    width: 50px;
+    margin-left: 20px;
+  }
+
+  .overflow-ellipsis {
+    max-width: 100px;
+  }
+}

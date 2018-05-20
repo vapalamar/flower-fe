@@ -1,0 +1,123 @@
+<aside>
+  <div>
+    <div class="aside-header">
+      <a [routerLink]="[mainPageUrl$ | async]" class="logo" id="qa-aside-header-menu" [ngClass]="{'logo--min': reducedState}">
+        <img src="assets/images/logo/{{reducedState ? 'logo-icon' : 'horizontal-logo'}}.svg" alt="Avisare">
+      </a>
+      <button type="button" class="btn burger" (click)="toggleReduceState()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <nav>
+      <ul class="sidebar-menu">
+        <ng-template [ngIf]="isVendor$ | async">
+          <li>
+            <a routerLink="/rfps" id="menu-rfps" [class.active]="isRfpsRouteActive" tooltip="Search&nbsp;RFP" placement="right" [isDisabled]="!reducedState">
+              <i class="icon-rfp"></i>
+              <span>Search RFP</span>
+            </a>
+          </li>
+        </ng-template>
+        <ng-template [ngIf]="((isClientViewOnly$ | async) || (isVendor$ | async) || (isSuperAdmin$ | async))">
+          <li>
+            <a routerLink="/vendors" id="menu-vendors" [class.active]="isVendorsRouteActive" tooltip="Vendors" placement="right" [isDisabled]="!reducedState">
+              <i class="icon-vendors"></i>
+              <span>Vendors</span>
+            </a>
+          </li>
+        </ng-template>
+        <ng-template [ngIf]="isClientViewOnly$ | async">
+          <li>
+            <a routerLink="/rfps" id="menu-search-rfps" [class.active]="isRfpsRouteActive" tooltip="Search&nbsp;RFP" placement="right" [isDisabled]="!reducedState">
+              <i class="icon-rfp"></i>
+              <span>Search RFP</span>
+            </a>
+          </li>
+        </ng-template>
+        <ng-template [ngIf]="((isClientViewOnly$ | async) || (isSuperAdmin$ | async))">
+          <li>
+            <a routerLink="/rfps/my-postings" id="menu-my-postings" *ngIf="isClientViewOnly$ | async" routerLinkActive="active" tooltip="My&nbsp;postings"
+              placement="right" [isDisabled]="!reducedState">
+              <i class="icon-postings"></i>
+              <span>My postings</span>
+            </a>
+            <a routerLink="/rfps" *ngIf="isSuperAdmin$ | async" id="menu-search-rfps-for-super-admin" routerLinkActive="active" tooltip="All&nbsp;postings" placement="right"
+              [isDisabled]="!reducedState">
+              <i class="icon-postings"></i>
+              <span>All postings</span>
+            </a>
+          </li>
+        </ng-template>
+        <li *ngIf="((isVendorAdmin$ | async) || (isClientAdmin$ | async)) && !(isIndependent$ | async)">
+          <a routerLink="/employees" id="qa-employees-menu" routerLinkActive="active" tooltip="Manage&nbsp;users" placement="right" [isDisabled]="!reducedState">
+            <i class="icon-vendors"></i>
+            <span>Manage Users</span>
+          </a>
+        </li>
+        <li *ngIf="isVendorAdmin$ | async">
+          <a routerLink="/my-profile"  id="qa-my-profile-menu" routerLinkActive="active" tooltip="My&nbsp;profile" placement="right" [isDisabled]="!reducedState">
+            <i class="icon-company"></i>
+            <span>My Profile</span>
+          </a>
+        </li>
+        <ng-template [ngIf]="isSuperAdmin$ | async">
+          <li class="reduced-item">
+            <a [class.active]="isManageRoutesActive" id="qa-mange-menu-super-admin" tooltip="Manage" placement="right" [isDisabled]="!reducedState">
+              <i class="icon-vendors"></i>
+              <span>Manage</span>
+              <ul class="additional-menu">
+                <li>
+                  <a routerLink="/manage/clients" id="qa-mange-clients-menu-super-admin" routerLinkActive="active">
+                    <i class="fa fa-chevron-right"></i>
+                    <span>Clients</span>
+                  </a>
+                </li>
+                <li>
+                  <a routerLink="/manage/vendors" id="qa-mange-vendors-menu-super-admin" [class.active]="isManageVendorsRouteActive">
+                    <i class="fa fa-chevron-right"></i>
+                    <span>Vendors</span>
+                  </a>
+                </li>
+              </ul>
+            </a>
+          </li>
+          <li class="dropdown-sub-menu">
+            <div class="btn-group" dropdown>
+              <button [class.active]="isManageRoutesActive" id="button-basic" dropdownToggle class="dropdown-toggle button-basic" aria-controls="dropdown-basic">
+                <i class="icon-vendors"></i>
+              </button>
+              <ul *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown-menu-top" role="menu" aria-labelledby="button-basic">
+                <li role="menuitem">
+                  <a class="dropdown-item" id="qa-mange-clients-menu-super" routerLink="/manage/clients" routerLinkActive="active">
+                    <span>Clients</span>
+                  </a>
+                </li>
+                <li role="menuitem">
+                  <a class="dropdown-item" id="qa-mange-vendors-menu" routerLink="/manage/vendors" [class.active]="isManageVendorsRouteActive">
+                    <span>Vendors</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </li>
+        </ng-template>
+      </ul>
+    </nav>
+    <a routerLink="/rfps/create" id="menu-rfps-create" class="btn btn-info btn-block btn-lg" *ngIf="isClient$ | async">
+      + New posting
+    </a>
+  </div>
+  <div class="sticky-aside-area" [ngClass]="{'super-admin-sticky-aside-area': isSuperAdmin$ | async}">
+    <div class="avatar-area">
+      <div class="image" *ngIf="avatar$ | async as url">
+        <img [src]="url" [alt]="(userFullName$ | async) + ' avatar'">
+      </div>
+      <div class="name">
+        <div class="overflow-ellipsis">Hi, {{ userFullName$ | async }}</div>
+        <div class="role-hint overflow-ellipsis" *ngIf="companyType$ | async">{{ companyType$ | async }} ACCOUNT</div>
+      </div>
+    </div>
+  </div>
+</aside>

@@ -25,15 +25,16 @@ export class RedirectService {
   ) {}
 
   toMainPage(reload = false) {
-    this.mainPageUrl$.pipe(first()).subscribe(url => {
-      if (!url) {
-        return this.toLogin();
-      }
-      this.router.navigate([url]);
-      if (reload && isPlatformBrowser(this.platfromId)) {
-        window.location.reload();
-      }
-    });
+    // this.mainPageUrl$.pipe(first()).subscribe(url => {
+    //   if (!url) {
+    //     return this.toLogin();
+    //   }
+    //   this.router.navigate([url]);
+    //   if (reload && isPlatformBrowser(this.platfromId)) {
+    //     window.location.reload();
+    //   }
+    // });
+    this.router.navigate(['dashboard']);
   }
 
   toLogin() {

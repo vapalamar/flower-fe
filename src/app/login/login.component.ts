@@ -7,6 +7,7 @@ import { Subscription } from 'rxjs/Subscription';
 
 import { Login } from '../actions/auth';
 import { AppState, hasLoginError, isAuthenticated, getAuthUser } from '../reducers';
+import { RedirectService } from '../shared/redirect/redirect.service';
 
 @Component({
   selector: 'fl-login',
@@ -22,6 +23,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private store: Store<AppState>,
     private toastr: ToastrService,
+    private redirect: RedirectService
   ) {}
 
   ngOnInit() {
@@ -61,6 +63,7 @@ export class LoginComponent implements OnInit {
         }
         this.toastr.success('Login success');
         this.formDisabled = false;
+        this.redirect.toMainPage();
       });
   }
 }

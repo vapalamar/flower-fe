@@ -1,8 +1,29 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthLayoutComponent } from './auth-layout/auth-layout.component';
+import { AppLayoutComponent } from './app-layout/app-layout.component';
 
 const routes: Routes = [
+  {
+    path: '',
+    component: AppLayoutComponent,
+    children: [
+      {
+        path: 'dashboard',
+        children: [
+          {
+            path: '',
+            loadChildren: 'app/dashboard/dashboard.module#DashboardModule',
+          },
+        ],
+      },
+      {
+        path: '**',
+        redirectTo: '/login',
+        pathMatch: 'full',
+      },
+    ],
+  },
   {
     path: '',
     children: [
