@@ -17,6 +17,8 @@ import { RedirectService } from './redirect/redirect.service';
 import { FileHelperService } from './file-helper/file-helper.service';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { HeaderComponent } from './header/header.component';
+import { AuthenticatedGuard } from './authenticated/authenticated.guard';
+import { NonAuthenticatedGuard } from './non-authenticated/non-authenticated.guard';
 
 const modules = [];
 const components = [
@@ -52,8 +54,8 @@ export class SharedModule {
         // TokenService,
         // TokenHelperService,
         // HttpFormDataService,
-        // AuthenticatedGuard,
-        // NonAuthenticatedGuard,
+        AuthenticatedGuard,
+        NonAuthenticatedGuard,
         RedirectService,
         // RoleVendorGuard,
         // RoleClientGuard,
