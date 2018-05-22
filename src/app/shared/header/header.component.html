@@ -5,9 +5,6 @@
     </div>
     <div class="col text-right">
       <ul class="nav navbar-nav">
-        <li>
-          <a class="simple-link" href="https://intercom.help/avisare" target="_blank">Help</a>
-        </li>
         <li hidden>
           <a href>
             <i class="fa fa-envelope"></i>
@@ -16,7 +13,7 @@
         <li *ngIf="employee$ | async as employee">
           <div class="company-panel" dropdown placement="bottom right">
             <a href class="overflow-ellipsis" (click)="false" dropdownToggle>
-              {{ employee.Company ? employee.Company.name : employee.firstName + ' ' + employee.lastName }}
+              {{ employee.company ? employee.company.name : employee.firstName + ' ' + employee.lastName }}
             </a>
             <div class="img-area" *ngIf="employee.Company">
               <img [src]="employee.Company.Image.url" [alt]="employee.Company.name" />

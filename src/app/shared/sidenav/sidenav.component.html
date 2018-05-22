@@ -1,26 +1,19 @@
 <aside>
   <div>
     <div class="aside-header">
-      <a [routerLink]="[mainPageUrl$ | async]" class="logo" id="qa-aside-header-menu" [ngClass]="{'logo--min': reducedState}">
-        <img src="assets/images/logo/{{reducedState ? 'logo-icon' : 'horizontal-logo'}}.svg" alt="Avisare">
-      </a>
-      <button type="button" class="btn burger" (click)="toggleReduceState()">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
+      <h1>FLOWER</h1>
     </div>
     <nav>
       <ul class="sidebar-menu">
-        <ng-template [ngIf]="isVendor$ | async">
+        <ng-template [ngIf]="isClient">
           <li>
-            <a routerLink="/rfps" id="menu-rfps" [class.active]="isRfpsRouteActive" tooltip="Search&nbsp;RFP" placement="right" [isDisabled]="!reducedState">
+            <a routerLink="/dashboard" id="menu-rfps" [class.active]="isDashboardActive">
               <i class="icon-rfp"></i>
-              <span>Search RFP</span>
+              <span>Dashboard</span>
             </a>
           </li>
         </ng-template>
-        <ng-template [ngIf]="((isClientViewOnly$ | async) || (isVendor$ | async) || (isSuperAdmin$ | async))">
+        <!-- <ng-template [ngIf]="((isClientViewOnly$ | async) || (isVendor$ | async) || (isSuperAdmin$ | async))">
           <li>
             <a routerLink="/vendors" id="menu-vendors" [class.active]="isVendorsRouteActive" tooltip="Vendors" placement="right" [isDisabled]="!reducedState">
               <i class="icon-vendors"></i>
@@ -102,21 +95,21 @@
               </ul>
             </div>
           </li>
-        </ng-template>
+        </ng-template> -->
       </ul>
     </nav>
-    <a routerLink="/rfps/create" id="menu-rfps-create" class="btn btn-info btn-block btn-lg" *ngIf="isClient$ | async">
+    <!-- <a routerLink="/rfps/create" id="menu-rfps-create" class="btn btn-info btn-block btn-lg" *ngIf="isClient$ | async">
       + New posting
-    </a>
+    </a> -->
   </div>
-  <div class="sticky-aside-area" [ngClass]="{'super-admin-sticky-aside-area': isSuperAdmin$ | async}">
+  <div class="sticky-aside-area">
     <div class="avatar-area">
-      <div class="image" *ngIf="avatar$ | async as url">
-        <img [src]="url" [alt]="(userFullName$ | async) + ' avatar'">
+      <div class="image" *ngIf="avatar">
+        <img [src]="avatar" [alt]="userFullName + ' avatar'">
       </div>
       <div class="name">
-        <div class="overflow-ellipsis">Hi, {{ userFullName$ | async }}</div>
-        <div class="role-hint overflow-ellipsis" *ngIf="companyType$ | async">{{ companyType$ | async }} ACCOUNT</div>
+        <div class="overflow-ellipsis">Hi, {{ userFullName }}</div>
+        <div class="role-hint overflow-ellipsis" *ngIf="role">{{ role }} ACCOUNT</div>
       </div>
     </div>
   </div>

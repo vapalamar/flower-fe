@@ -46,6 +46,7 @@ export class AuthEffects {
     .pipe(
       mergeMap(() => {
         this.redirect.toLogin();
+        this.afAuth.auth.signOut();
         return empty();
       }),
     );
