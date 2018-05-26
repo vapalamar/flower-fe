@@ -1,0 +1,61 @@
+<div dropdown #dropdown="bs-dropdown" [id]="setId('select', id)" [isDisabled]="disabled" [dropup]="dropup" (onShown)="onShown()" (onHidden)="onHidden()"
+  [ngClass]="{'multiple': multiple && !disabledStyle, 'single': !multiple && !disabledStyle, 'default': disabledStyle, 'contacts': multiple && disabledStyle}">
+  <div class="dropdown-toggle" dropdownToggle>
+    <div class="form-control" (click)="stopHideInput($event)" [ngClass]="{ 'ng-touched': control.touched, 'ng-invalid': control.invalid, disabled: disabled, 'search-enable': showSearch}">
+      <div dropdownToggle class="placeholder" *ngIf="((multiple && !modelArray.length) || (!multiple && !model)) && !focusClass">
+        {{placeholder}}
+      </div>
+      <div class="selected-values" *ngIf="((multiple && modelArray.length) || model) && !showSearch">{{ selectedValues }}</div>
+      <div class="search-keys" *ngIf="showSearch">
+        <ng-template [ngIf]="multiple" [ngIfElse]="singleValue">
+          <div class="key" *ngFor="let option of modelArray">
+            {{option.name ? option.name : option.firstName + ' ' + option.lastName}}
+            <i class="fas fa-times" [id]="setId('option', id, option.id)" (click)="unselect(option)"></i>
+          </div>
+        </ng-template>
+        <ng-template #singleValue>
+          <div *ngIf="selectedValues" class="key">{{selectedValues}}</div>
+        </ng-template>
+        <input #input type="text" class="search-input" [id]="setId('input', id)" [maxlength]="maxLengthItem" *ngIf="showSearch && focusClass" (keyup.enter)="addCustomField()"
+          [placeholder]="placeholder" [(ngModel)]="search" (ngModelChange)="search$.next($event)">
+      </div>
+    </div>
+  </div>
+
+  <ng-template [ngIf]="options?.length">
+    <div class="dropdown-menu" *dropdownMenu>
+      <div *ngIf="showVirtualScroll; else usualScroll">
+        <virtual-scroll class="scroll-list" #virtualScroll [bufferAmount]="15" [items]="options | sortCollection : sortParams : findValue"
+          (update)="viewPortItems = ($event.length > 70 ? [] : $event)">
+          <div *ngFor="let option of viewPortItems" [id]="setId('option', id, option.id)" (click)="handleClick(option, $event)">
+            <div class="dropdown-item list-item" [class.selected]="option.selected">
+              <ng-container *ngTemplateOutlet="showItemComponent; context: {option: option}"></ng-container>
+            </div>
+          </div>
+        </virtual-scroll>
+      </div>
+
+      <ng-template #usualScroll>
+        <li *ngFor="let option of options | sortCollection : sortParams : findValue" [id]="setId('option', id, option.id)" (click)="handleClick(option, $event)">
+          <div class="dropdown-item" [class.selected]="option.selected">
+            <ng-container *ngTemplateOutlet="showItemComponent; context: {option: option}">
+            </ng-container>
+          </div>
+        </li>
+      </ng-template>
+    </div>
+  </ng-template>
+</div>
+
+<ng-template #defaultOptionTemplate let-option="option">
+  <span [class.text-muted]="option.disabled">{{ option.name }}</span>
+</ng-template>
+
+<ng-template #multipleOptionTemplate let-option="option">
+  <div class="custom-control custom-checkbox">
+    <input type="checkbox" class="custom-control-input" [checked]="option.selected">
+    <label class="custom-control-label">
+      {{ option.name }}
+    </label>
+  </div>
+</ng-template>
