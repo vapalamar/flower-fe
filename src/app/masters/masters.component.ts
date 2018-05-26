@@ -5,7 +5,7 @@ import { filter, mergeMap, map, delay, withLatestFrom } from 'rxjs/operators';
 import { BaseComponent } from '../helpers/base.component';
 import { defaultImage } from '../app.constants';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { values } from 'lodash-es';
+import { values, keys } from 'lodash-es';
 import { AddEmployeeModalComponent } from '../shared/add-employee-modal/add-employee-modal.component';
 
 @Component({
@@ -15,6 +15,7 @@ import { AddEmployeeModalComponent } from '../shared/add-employee-modal/add-empl
 })
 export class MastersComponent extends BaseComponent implements OnInit {
   employees: any[];
+  employeesMap: {};
   company: any;
   isLoading = false;
   bsModalRef: BsModalRef;
@@ -35,7 +36,11 @@ export class MastersComponent extends BaseComponent implements OnInit {
         withLatestFrom(this.afAuth.authState),
         mergeMap(([, u]) => this.afDb.database.ref(`users/${u.uid}/employees`).once('value'))
       )
-      .subscribe(s => this.employees = this.mapEmployees(values(s.val())));
+      .subscribe(s => {
+        const employeesMap = s.val();
+        this.employeesMap = employeesMap;
+        this.employees = this.mapEmployees(values(this.employeesMap));
+      });
 
     this.subs = this.afAuth.authState.pipe(
       filter(Boolean),
@@ -44,6 +49,7 @@ export class MastersComponent extends BaseComponent implements OnInit {
     ).subscribe(v => {
       this.company = v.company;
       this.isLoading = false;
+      this.employeesMap = v.employees;
       this.employees = this.mapEmployees(values(v.employees));
     });
   }
@@ -55,21 +61,12 @@ export class MastersComponent extends BaseComponent implements OnInit {
     });
     if (employeeIdx) {
       this.bsModalRef.content.title = 'Edit user';
-      // this.api.employee.get(employeeId, this.company.id).subscribe(user => {
-      //   this.bsModalRef.content.patchDataForm(user);
-      // });
+      const employeeKey = keys(this.employeesMap)[employeeIdx];
+      this.bsModalRef.content.employeeId = employeeKey;
+      this.bsModalRef.content.patchDataForm(this.employees[employeeIdx]);
     } else {
       this.bsModalRef.content.title = 'Add user';
     }
-
-    // if (this.currentEmployee.id === employeeId) {
-    //   this.bsModalRef.content.role = this.currentEmployee.role;
-    // } else {
-    //   this.bsModalRef.content.isVendor = this.currentEmployee.role === EmployeeRole.VendorAdmin;
-    //   this.bsModalRef.content.isClient = this.currentEmployee.role === EmployeeRole.ClientAdmin || this.isSuperAdmin;
-    // }
-    // this.bsModalRef.content.companyId = this.company.id;
-    // this.bsModalRef.content.employeeId = employeeId;
   }
 
   private mapEmployees(employees) {

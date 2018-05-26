@@ -15,6 +15,7 @@ import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireStorage } from 'angularfire2/storage';
 import { empty } from 'rxjs/observable/empty';
 import { combineLatest } from 'rxjs/observable/combineLatest';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'fl-add-employee-modal',
@@ -41,7 +42,8 @@ export class AddEmployeeModalComponent {
     private store: Store<AppState>,
     private afAuth: AngularFireAuth,
     private afDB: AngularFireDatabase,
-    private afStorage: AngularFireStorage
+    private afStorage: AngularFireStorage,
+    private http: HttpClient
   ) {}
 
   patchDataForm(userData: any) {
@@ -53,7 +55,7 @@ export class AddEmployeeModalComponent {
       jobTitle,
       department,
       photoURL,
-      photo
+      photo: photoURL ? { url: photoURL }: ''
     });
   }
 
@@ -78,16 +80,7 @@ export class AddEmployeeModalComponent {
   }
 
   addEmployee(employeeData) {
-    // this.formDisabled = true;
-    // const addEmployee = this.api.employee
-    //   .create(this.companyId, employeeData)
-    //   .pipe(finalize(() => (this.formDisabled = false)));
-
-    // this.employee.validationsRequests
-    //   .pipe(filter(requests => requests === 0), first(), switchMap(() => addEmployee))
-    //   .subscribe(() => {
-        
-    //   });
+    this.formDisabled = true;
     const putFile: Promise<any> = employeeData.photo ? this.afStorage.ref('files').put(employeeData.photo) : Promise.resolve(null) as any;
     combineLatest(putFile, this.afAuth.authState.pipe(filter(Boolean), first()))
       .pipe(
@@ -105,7 +98,27 @@ export class AddEmployeeModalComponent {
   }
  
   editEmployee(employeeData) {
-    
+    this.formDisabled = true;
+    const putFile: Promise<any> = employeeData.photo && employeeData.photo.url !== employeeData.photoURL 
+      ? this.afStorage.ref('files').put(employeeData.photo) 
+      : Promise.resolve(null) as any;
+    combineLatest(putFile, this.afAuth.authState.pipe(filter(Boolean), first()))
+      .pipe(
+        mergeMap(([file, u]) => {
+          if (!employeeData.photo) {
+            employeeData.photoURL = '';
+          } else {
+            employeeData.photoURL = (file && file.downloadURL) || employeeData.photoURL;
+          }
+          const employees = this.afDB.database.ref(`users/${u.uid}/employees/${this.employeeId}`);
+          return employees.set(employeeData);
+        }),
+        finalize(() => (this.formDisabled = false))
+      ).subscribe(() => {
+        this.toastr.success('Employee successfully updated');
+        this.modal.setDismissReason('success');
+        this.bsModalRef.hide();
+      });
   }
 }
 

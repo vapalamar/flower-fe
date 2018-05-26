@@ -35,7 +35,6 @@
       <th>Employee</th>
       <th>Job Title</th>
       <th>Department</th>
-      <th>Joined</th>
       <th>Actions</th>
     </tr>
   </thead>
@@ -59,15 +58,12 @@
       <td>
         <div>{{employee.jobTitle}}</div>
       </td>
-      <td><div>{{employee.department}}</div></td>
       <td>
-        <div>
-          <span>{{employee?.createdAt | date:'MMM dd, yyyy':'UTC'}}</span>
-        </div>
+        <div>{{employee.department}}</div>
       </td>
       <td>
         <div class="button-group">
-          <button type="button" class="btn btn-icon" (click)="openAddEmployeeModal(employee.id)">
+          <button type="button" class="btn btn-icon" (click)="openAddEmployeeModal(i)">
             <i class="fas fa-pencil-alt"></i>
           </button>
         </div>
