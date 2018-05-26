@@ -1,3 +1,56 @@
-<p>
-  masters works!
-</p>
+<table class="table employees-table">
+  <thead>
+    <tr>
+      <th>Employee</th>
+      <th>Job Title</th>
+      <th>Department</th>
+      <th>Joined</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let employee of employees; let i = index; trackBy: trackEmployee">
+      <td>
+        <div>
+          <div class="short-information">
+            <div class="img-holder">
+              <img [src]="employee?.photoURL" [alt]="employee.firstName">
+            </div>
+            <div>
+              <div>
+                <div>{{employee.firstName}} {{employee.lastName}}</div>
+              </div>
+              <span class="text-grey">#{{i + 1}}</span>
+            </div>
+          </div>
+        </div>
+      </td>
+      <td>
+        <div>{{employee.jobTitle}}</div>
+      </td>
+      <td><div>{{employee.department}}</div></td>
+      <td>
+        <div>
+          <span>{{employee?.createdAt | date:'MMM dd, yyyy':'UTC'}}</span>
+        </div>
+      </td>
+      <td>
+        <div class="button-group">
+          <button type="button" class="btn btn-icon" (click)="openAddEmployeeModal(employee.id)">
+            <i class="fas fa-pencil-alt"></i>
+          </button>
+        </div>
+      </td>
+    </tr>
+    <tr *ngIf="isLoading">
+      <td colspan="7">
+        <fl-spinner></fl-spinner>
+      </td>
+    </tr>
+    <tr *ngIf="!isLoading && !employees.length">
+      <td colspan="7" class="text-center">
+        No Search Results
+      </td>
+    </tr>
+  </tbody>
+</table>

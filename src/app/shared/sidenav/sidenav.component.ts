@@ -95,7 +95,6 @@ export class SidenavComponent extends BaseComponent implements OnInit {
       .subscribe(([, user]) => this.setActiveStates(this.router.url, user));
 
     this.subs = this.role$.subscribe(role => {
-      console.log(this.router.url);
       this.role = role;
       this.isClient = role === 'CLIENT';
       this.isVendor = !this.isClient;
