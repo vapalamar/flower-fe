@@ -27,6 +27,7 @@ import { CropImageComponent } from './image-select/crop-image/crop-image.compone
 import { VendorRoleGuard } from './vendor/vendor.guard';
 import { SeeMoreComponent } from './see-more/see-more.component';
 import { AttachmentsComponent } from './attachments/attachments.component';
+import { PriceControlComponent } from './price-control/price-control.component';
 
 const modules = [];
 const components = [
@@ -41,7 +42,8 @@ const components = [
   ImageSelectComponent,
   CropImageComponent,
   SeeMoreComponent,
-  AttachmentsComponent
+  AttachmentsComponent,
+  PriceControlComponent
 ];
 
 @NgModule({

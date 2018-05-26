@@ -1,0 +1,2 @@
+<input type="text" #input [id]="id" class="form-control" [ngClass]="{ 'ng-touched': touched, 'ng-invalid': invalid }" [placeholder]="placeholder"
+  [disabled]="disabled" (keyup)="change()" (blur)="onBlur()" autocomplete="off">
