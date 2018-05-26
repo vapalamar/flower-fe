@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { filter, mergeMap, map } from 'rxjs/operators';
+import { filter, mergeMap, map, delay, withLatestFrom } from 'rxjs/operators';
 import { BaseComponent } from '../helpers/base.component';
 import { defaultImage } from '../app.constants';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { values } from 'lodash-es';
 import { AddEmployeeModalComponent } from '../shared/add-employee-modal/add-employee-modal.component';
 
 @Component({
@@ -28,15 +29,22 @@ export class MastersComponent extends BaseComponent implements OnInit {
 
   ngOnInit() {
     this.isLoading = true;
+    this.subs = this.modal.onHidden.pipe(
+        delay(500),
+        filter(ev => ev === 'success'),
+        withLatestFrom(this.afAuth.authState),
+        mergeMap(([, u]) => this.afDb.database.ref(`users/${u.uid}/employees`).once('value'))
+      )
+      .subscribe(s => this.employees = this.mapEmployees(values(s.val())));
+
     this.subs = this.afAuth.authState.pipe(
       filter(Boolean),
-      mergeMap(u => this.afDb.database.ref(`users/${u.uid}`).limitToFirst(10).once('value')),
+      mergeMap(u => this.afDb.database.ref(`users/${u.uid}`).once('value')),
       map(s => s && s.val()),
     ).subscribe(v => {
-      const employees = v.employees.map(e => ({...e, photoURL: e.photoURL || defaultImage.employee.logo }));
       this.company = v.company;
       this.isLoading = false;
-      this.employees = employees;
+      this.employees = this.mapEmployees(values(v.employees));
     });
   }
 
@@ -62,5 +70,9 @@ export class MastersComponent extends BaseComponent implements OnInit {
     // }
     // this.bsModalRef.content.companyId = this.company.id;
     // this.bsModalRef.content.employeeId = employeeId;
+  }
+
+  private mapEmployees(employees) {
+    return (employees || []).map(e => ({...e, photoURL: e.photoURL || defaultImage.employee.logo }));
   }
 }

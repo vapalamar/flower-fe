@@ -3,13 +3,18 @@ import { FormGroup } from '@angular/forms';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 import { Store } from '@ngrx/store';
-import { first, finalize, filter, switchMap } from 'rxjs/operators';
+import { first, finalize, filter, switchMap, map, mergeMap } from 'rxjs/operators';
 
 import { ApiService } from '../../api';
 import { AddEmployeeFormComponent } from '../add-employee-form/add-employee-form.component';
 import { AppState, getAuthUser } from '../../reducers';
 import { SetUser } from '../../actions/auth';
 import { defaultImage } from '../../app.constants';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireStorage } from 'angularfire2/storage';
+import { empty } from 'rxjs/observable/empty';
+import { combineLatest } from 'rxjs/observable/combineLatest';
 
 @Component({
   selector: 'fl-add-employee-modal',
@@ -34,6 +39,9 @@ export class AddEmployeeModalComponent {
     private bsModalRef: BsModalRef,
     private toastr: ToastrService,
     private store: Store<AppState>,
+    private afAuth: AngularFireAuth,
+    private afDB: AngularFireDatabase,
+    private afStorage: AngularFireStorage
   ) {}
 
   patchDataForm(userData: any) {
@@ -78,12 +86,24 @@ export class AddEmployeeModalComponent {
     // this.employee.validationsRequests
     //   .pipe(filter(requests => requests === 0), first(), switchMap(() => addEmployee))
     //   .subscribe(() => {
-    //     this.toastr.success('Employee successfully created');
-    //     this.modal.setDismissReason('success');
-    //     this.bsModalRef.hide();
+        
     //   });
+    const putFile: Promise<any> = employeeData.photo ? this.afStorage.ref('files').put(employeeData.photo) : Promise.resolve(null) as any;
+    combineLatest(putFile, this.afAuth.authState.pipe(filter(Boolean), first()))
+      .pipe(
+        mergeMap(([file, u]) => {
+          employeeData.photoURL = (file && file.downloadURL) || '';
+          const employees = this.afDB.database.ref(`users/${u.uid}/employees`).push();
+          return employees.set(employeeData);
+        }),
+        finalize(() => (this.formDisabled = false))
+      ).subscribe(() => {
+        this.toastr.success('Employee successfully created');
+        this.modal.setDismissReason('success');
+        this.bsModalRef.hide();
+      });
   }
-
+ 
   editEmployee(employeeData) {
     
   }

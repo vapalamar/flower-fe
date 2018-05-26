@@ -22,6 +22,7 @@ import { effects } from './effects';
 import { environment } from '../environments/environment';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireStorageModule } from 'angularfire2/storage';
 import { AppLayoutComponent } from './app-layout/app-layout.component';
 
 @NgModule({
@@ -38,6 +39,7 @@ import { AppLayoutComponent } from './app-layout/app-layout.component';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
+    AngularFireStorageModule,
     BrowserAnimationsModule,
     StoreModule.forRoot(reducers),
     EffectsModule.forRoot(effects),
