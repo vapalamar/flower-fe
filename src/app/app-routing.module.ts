@@ -7,10 +7,24 @@ import { NonAuthenticatedGuard } from './shared/non-authenticated/non-authentica
 
 const routes: Routes = [
   {
-    path: 'dashboard',
-    component: AppLayoutComponent,
+    path: '',
     canActivateChild: [AuthenticatedGuard],
-    loadChildren: 'app/dashboard/dashboard.module#DashboardModule',
+    component: AppLayoutComponent,
+    children: [
+      {
+        path: 'dashboard',
+        loadChildren: 'app/dashboard/dashboard.module#DashboardModule',
+      },
+      {
+        path: 'masters',
+        loadChildren: 'app/masters/masters.module#MastersModule'
+      },
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: '/dashboard'
+      }
+    ]
   },
   {
     path: 'signup',

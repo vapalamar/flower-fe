@@ -7,9 +7,15 @@
       <ul class="sidebar-menu">
         <ng-template [ngIf]="isVendor">
           <li>
-            <a routerLink="/dashboard" id="menu-rfps" [class.active]="isDashboardActive">
-              <i class="icon-rfp"></i>
+            <a routerLink="/dashboard" id="menu-dashboard" [class.active]="isDashboardActive">
+              <i class="fas fa-chart-line"></i>
               <span>Dashboard</span>
+            </a>
+          </li>
+          <li>
+            <a routerLink="/masters" id="menu-masters" [class.active]="isMastersTabActive">
+              <i class="fas fa-user"></i>
+              <span>Masters</span>
             </a>
           </li>
         </ng-template>

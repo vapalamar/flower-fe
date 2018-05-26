@@ -38,6 +38,7 @@ export class SidenavComponent extends BaseComponent implements OnInit {
   isClient: boolean;
   isVendor: boolean;
   isDashboardActive: boolean;
+  isMastersTabActive: boolean;
 
   // isVendorAdmin$ = this.role$.pipe(map(role => role === EmployeeRole.VendorAdmin));
 
@@ -89,9 +90,9 @@ export class SidenavComponent extends BaseComponent implements OnInit {
     //   .pipe(find(Boolean))
     //   .subscribe(user => this.setActiveStates(this.router.url, user));
 
-    // this.subs = this.router.events
-    //   .pipe(filter(e => e instanceof NavigationEnd), withLatestFrom(this.store.select(getAuthUser)))
-    //   .subscribe(([, user]) => this.setActiveStates(this.router.url, user));
+    this.subs = this.router.events
+      .pipe(filter(e => e instanceof NavigationEnd), withLatestFrom(this.role$))
+      .subscribe(([, user]) => this.setActiveStates(this.router.url, user));
 
     this.subs = this.role$.subscribe(role => {
       console.log(this.router.url);
@@ -104,6 +105,7 @@ export class SidenavComponent extends BaseComponent implements OnInit {
 
   private setActiveStates(url: string, user: User) {
     this.isDashboardActive = Boolean(url.match(/^\/dashboard/));
+    this.isMastersTabActive = Boolean(url.match(/^\/masters/))
   //   if (user.Employee.role === EmployeeRole.SuperAdmin) {
   //     const hasQueryParams = url.indexOf('?') !== -1;
   //     const pureUrl = hasQueryParams ? url.slice(0, url.indexOf('?')) : url;
