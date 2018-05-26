@@ -1,0 +1,10 @@
+<div>
+  <div *ngIf="!includeHtml; else markupView" class="d-inline">{{showText}}</div>
+  <ng-template #markupView>
+    <div [innerHTML]="showText" class="d-inline markup-view-reset is-list-style formatted-text"></div>
+  </ng-template>
+  <button type="button" class="btn btn-link p0" [ngClass]="classForBtn" *ngIf="showBtn" [id]="id" (click)="turnDescription($event)">
+    {{modBtn ? textBtn || 'see more' : 'hide'}}
+  </button>
+  <ng-content></ng-content>
+</div>

@@ -1,3 +1,54 @@
-<p>
-  services works!
-</p>
+<fl-spinner *ngIf="isLoading && !services?.length"></fl-spinner>
+<div class="detailed-block" *ngIf="!isLoading || services?.length">
+  <div class="card-frame" *ngFor="let service of services">
+    <div>
+      <div class="detailed-block__wrapper">
+        <div class="detailed-block__status badge badge-success" *ngIf="service.status">
+          {{service.status}}
+        </div>
+      </div>
+    </div>
+    <div class="card-info">
+      <div class="card-panel">
+        <div class="row">
+          <div class="col">
+            <h4 class="card-panel__title">
+              <a class="card-panel__title-link" [routerLink]="['/services', service.id]">{{service.title}}</a>
+            </h4>
+            <div class="company-categories">
+              <div class="text-dark" *ngIf="service.price">
+                <div class="text-grey">Price</div>
+                {{ service.price | currency: 'USD' : 'symbol-narrow' : '1.0-0'}}
+              </div>
+            </div>
+          </div>
+          <div class="col text-right">
+            <div class="card-controls">
+              <li class="actions-list__item dropdown-item-default">
+                <a class="btn btn-icon btn-block text-right btn-lg" [routerLink]="['/services', service.id, 'edit']">
+                  <i class="fas fa-pencil-alt"></i>
+                </a>
+              </li>
+              <li class="actions-list__item dropdown-item-default">
+                <button type="button" class="btn btn-icon btn-block text-right btn-lg" (click)="deleteRfp(service.id)">
+                  <i class="fas fa-trash-alt"></i>
+                </button>
+              </li>
+            </div>
+          </div>
+        </div>
+        <p>
+          <fl-see-more [dataIn]="service.summary" [lengthText]="150" [includeHtml]="true" [cutOnly]="true">
+            <a [routerLink]="['/services', service.id]" *ngIf="service.summary?.length >= 150">See more</a>
+          </fl-see-more>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="text-center">
+  <div class="btn-group" *ngIf="services?.length < totalCount">
+    <button type="button" id="qa-load-more" class="btn btn-outline-primary" (click)="loadMore()">Load more</button>
+  </div>
+  <span *ngIf="!isLoading && !services?.length">No Search Results</span>
+</div>
