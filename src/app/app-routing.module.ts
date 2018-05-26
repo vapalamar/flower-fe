@@ -4,6 +4,7 @@ import { AuthLayoutComponent } from './auth-layout/auth-layout.component';
 import { AppLayoutComponent } from './app-layout/app-layout.component';
 import { AuthenticatedGuard } from './shared/authenticated/authenticated.guard';
 import { NonAuthenticatedGuard } from './shared/non-authenticated/non-authenticated.guard';
+import { VendorRoleGuard } from './shared/vendor/vendor.guard';
 
 const routes: Routes = [
   {
@@ -13,10 +14,12 @@ const routes: Routes = [
     children: [
       {
         path: 'dashboard',
+        canActivate: [VendorRoleGuard],
         loadChildren: 'app/dashboard/dashboard.module#DashboardModule',
       },
       {
         path: 'masters',
+        canActivate: [VendorRoleGuard],
         loadChildren: 'app/masters/masters.module#MastersModule'
       },
       {

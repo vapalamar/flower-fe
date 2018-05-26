@@ -24,6 +24,7 @@ import { AddEmployeeFormComponent } from './add-employee-form/add-employee-form.
 import { AddEmployeeModalComponent } from './add-employee-modal/add-employee-modal.component';
 import { ImageSelectComponent } from './image-select/image-select.component';
 import { CropImageComponent } from './image-select/crop-image/crop-image.component';
+import { VendorRoleGuard } from './vendor/vendor.guard';
 
 const modules = [];
 const components = [
@@ -67,6 +68,7 @@ export class SharedModule {
         // HttpFormDataService,
         AuthenticatedGuard,
         NonAuthenticatedGuard,
+        VendorRoleGuard,
         RedirectService,
         // RoleVendorGuard,
         // RoleClientGuard,
