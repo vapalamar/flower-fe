@@ -1,0 +1,33 @@
+<!--[style.width.px]="size.width" [style.height.px]="size.height"-->
+<div class="preview" [ngClass]="classForPreview" *ngIf="selectedImage || placeholder">
+  <div class="preview-delete" *ngIf="selectedImage" (click)="delete()">
+    <span>&times;</span>
+  </div>
+  <div class="upload-container" *ngIf="showTemplate && displayButtonInPreview">
+    <ng-container *ngTemplateOutlet="showTemplate; context: {onFileChange: onFileChange, fileName: fileName}"></ng-container>
+  </div>
+  <img [src]="selectedImage || placeholder" alt="preview"/>
+</div>
+
+<ng-template [ngIf]="showTemplate && !displayButtonInPreview">
+  <ng-container *ngTemplateOutlet="showTemplate; context: {onFileChange: onFileChange, fileName: fileName}"></ng-container>
+</ng-template>
+
+
+<ng-template #buttonUpload>
+  <label class="btn btn-info" [ngClass]="classForUploadArea">
+    Upload
+    <input type="file" (change)="onFileChange($event)">
+  </label>
+</ng-template>
+
+<ng-template #iconUpload>
+  <label class="default-input-style" [ngClass]="classForUploadArea">
+    <i class="fa fa-plus"></i>
+    Upload Image
+    <input type="file" (change)="onFileChange($event)">
+  </label>
+</ng-template>
+
+
+

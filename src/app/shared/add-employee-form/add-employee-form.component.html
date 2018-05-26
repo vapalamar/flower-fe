@@ -1,0 +1,50 @@
+<form [formGroup]="form" novalidate>
+  <div class="form-row">
+    <div class="col">
+      <div class="form-group">
+        <label for="first_name">First name</label>
+        <input type="text" placeholder="Enter your first name" formControlName="firstName" id="first_name" class="form-control" [maxlength]="maxLengths.firstName">
+        <fl-control-messages [control]="form.get('firstName')"></fl-control-messages>
+      </div>
+    </div>
+    <div class="col">
+      <div class="form-group">
+        <label for="last_name">Last name</label>
+        <input type="text" placeholder="Enter your last name" formControlName="lastName" id="last_name" class="form-control" [maxlength]="maxLengths.lastName">
+        <fl-control-messages [control]="form.get('lastName')"></fl-control-messages>
+      </div>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col">
+      <div class="form-group">
+        <label for="phone_number">Phone number</label>
+        <input type="tel" placeholder="Enter your phone number" formControlName="phoneNumber" id="phone_number" class="form-control"
+          mask="(000) 000-0000">
+        <fl-control-messages [control]="form.get('phoneNumber')"></fl-control-messages>
+      </div>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col">
+      <div class="form-group">
+        <label for="job_title">Job title</label>
+        <input type="text" placeholder="Enter your position" formControlName="jobTitle" id="job_title" class="form-control" [maxLength]="maxLengths.jobTitle">
+        <fl-control-messages [control]="form.get('jobTitle')"></fl-control-messages>
+      </div>
+    </div>
+    <div class="col">
+      <div class="form-group">
+        <label for="department">Department</label>
+        <input type="text" placeholder="Enter your department" formControlName="department" id="department" class="form-control"
+          [maxLength]="maxLengths.department">
+        <fl-control-messages [control]="form.get('department')"></fl-control-messages>
+      </div>
+    </div>
+  </div>
+  <div class="user-photo">
+    <label>User photo</label>
+    <fl-image-select formControlName="photo" [placeholder]="defaulImage.employee.logo" (onOpenNestedModal)="onOpenNestedModal.emit($event)"
+      [iconUpload]="true" [size]="imageSize.company.logo"></fl-image-select>
+  </div>
+</form>

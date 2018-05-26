@@ -20,6 +20,10 @@ import { HeaderComponent } from './header/header.component';
 import { AuthenticatedGuard } from './authenticated/authenticated.guard';
 import { NonAuthenticatedGuard } from './non-authenticated/non-authenticated.guard';
 import { EditorComponent } from './editor/editor.component';
+import { AddEmployeeFormComponent } from './add-employee-form/add-employee-form.component';
+import { AddEmployeeModalComponent } from './add-employee-modal/add-employee-modal.component';
+import { ImageSelectComponent } from './image-select/image-select.component';
+import { CropImageComponent } from './image-select/crop-image/crop-image.component';
 
 const modules = [];
 const components = [
@@ -28,7 +32,11 @@ const components = [
   PasswordComponent,
   SidenavComponent,
   HeaderComponent,
-  EditorComponent
+  EditorComponent,
+  AddEmployeeFormComponent,
+  AddEmployeeModalComponent,
+  ImageSelectComponent,
+  CropImageComponent
 ];
 
 @NgModule({
@@ -47,6 +55,7 @@ const components = [
   ],
   declarations: [...components],
   exports: [...modules, ...components],
+  entryComponents: [AddEmployeeModalComponent, CropImageComponent]
 })
 export class SharedModule {
   static forRoot(): ModuleWithProviders {

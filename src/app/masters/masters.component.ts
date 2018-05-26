@@ -4,6 +4,8 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { filter, mergeMap, map } from 'rxjs/operators';
 import { BaseComponent } from '../helpers/base.component';
 import { defaultImage } from '../app.constants';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { AddEmployeeModalComponent } from '../shared/add-employee-modal/add-employee-modal.component';
 
 @Component({
   selector: 'fl-masters',
@@ -12,9 +14,15 @@ import { defaultImage } from '../app.constants';
 })
 export class MastersComponent extends BaseComponent implements OnInit {
   employees: any[];
+  company: any;
   isLoading = false;
+  bsModalRef: BsModalRef;
 
-  constructor(private afDb: AngularFireDatabase, private afAuth: AngularFireAuth) {
+  constructor(
+    private afDb: AngularFireDatabase,
+    private afAuth: AngularFireAuth,
+    private modal: BsModalService,
+  ) {
     super();
   }
 
@@ -22,13 +30,37 @@ export class MastersComponent extends BaseComponent implements OnInit {
     this.isLoading = true;
     this.subs = this.afAuth.authState.pipe(
       filter(Boolean),
-      mergeMap(u => this.afDb.database.ref(`users/${u.uid}/employees`).limitToFirst(10).once('value')),
+      mergeMap(u => this.afDb.database.ref(`users/${u.uid}`).limitToFirst(10).once('value')),
       map(s => s && s.val()),
-      map(v => (v || []).map(e => ({...e, photoURL: e.photoURL || defaultImage.employee.logo })))
-    ).subscribe(es => {
+    ).subscribe(v => {
+      const employees = v.employees.map(e => ({...e, photoURL: e.photoURL || defaultImage.employee.logo }));
+      this.company = v.company;
       this.isLoading = false;
-      this.employees = es;
+      this.employees = employees;
     });
   }
 
+  openAddEmployeeModal(employeeIdx?: number) {
+    this.bsModalRef = this.modal.show(AddEmployeeModalComponent, {
+      class: 'modal-lg',
+      backdrop: 'static',
+    });
+    if (employeeIdx) {
+      this.bsModalRef.content.title = 'Edit user';
+      // this.api.employee.get(employeeId, this.company.id).subscribe(user => {
+      //   this.bsModalRef.content.patchDataForm(user);
+      // });
+    } else {
+      this.bsModalRef.content.title = 'Add user';
+    }
+
+    // if (this.currentEmployee.id === employeeId) {
+    //   this.bsModalRef.content.role = this.currentEmployee.role;
+    // } else {
+    //   this.bsModalRef.content.isVendor = this.currentEmployee.role === EmployeeRole.VendorAdmin;
+    //   this.bsModalRef.content.isClient = this.currentEmployee.role === EmployeeRole.ClientAdmin || this.isSuperAdmin;
+    // }
+    // this.bsModalRef.content.companyId = this.company.id;
+    // this.bsModalRef.content.employeeId = employeeId;
+  }
 }

@@ -1,0 +1,40 @@
+@import '../../../assets/scss/utils/functions';
+@import '../../../assets/scss/utils/bootstrap-variables';
+
+.preview {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    z-index: 10;
+  }
+}
+
+:host {
+  ::ng-deep {
+    .upload-container > * {
+      z-index: 99;
+    }
+  }
+}
+
+input[type='file'] {
+  display: none;
+}
+
+::ng-deep {
+  .modal.image-select-cropper {
+    .modal-body {
+      text-align: center;
+      padding: 0;
+      line-height: 0;
+    }
+  }
+}
+
+.default-input-style {
+  color: $color-light-blue;
+  display: block;
+}
