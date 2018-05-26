@@ -92,17 +92,9 @@ export class SignUpComponent extends BaseComponent implements OnInit {
   ngOnInit() {
     this.generateForm();
 
-    const aboutSub = (this.subs = this.form.get('company.about').valueChanges.subscribe(() => {
+    const aboutSub = (this.subs = this.form.get('company.description').valueChanges.subscribe(() => {
       this.scrape.about = false;
       aboutSub.unsubscribe();
-    }));
-    const logoSub = (this.subs = this.form.get('company.logo').valueChanges.subscribe(() => {
-      this.scrape.logo = false;
-      logoSub.unsubscribe();
-    }));
-    const coverSub = (this.subs = this.form.get('company.cover').valueChanges.subscribe(() => {
-      this.scrape.cover = false;
-      coverSub.unsubscribe();
     }));
   }
 
@@ -131,31 +123,14 @@ export class SignUpComponent extends BaseComponent implements OnInit {
         ],
         email: ['', [Validators.required, Validators.email]],
         password: ['', [Validators.required, Validators.minLength(8)]],
+        role: ['client', [Validators.required]]
       }),
       company: this.formBuilder.group({
         name: [
           '',
-          [Validators.required, validators.startsWithLetterOrDigit, Validators.maxLength(this.maxLengths.company.name)],
+          [validators.startsWithLetterOrDigit, Validators.maxLength(this.maxLengths.company.name)],
         ],
-        website: ['', [validators.website]],
-        companyEmail: ['', [validators.emailOrEmpty]],
-        Addresses: this.formBuilder.array([
-          this.formBuilder.group({
-            gPlace: ['', [Validators.required]],
-            additional: ['', [Validators.maxLength(100)]],
-          }),
-        ]),
-        phoneNumber: ['', [Validators.required, validators.phoneNumber]],
-        BusinessTypes: this.formBuilder.array([
-          this.formBuilder.group({
-            id: ['', [Validators.required]],
-          }),
-        ]),
-        Industries: [[], [Validators.required]],
-        Services: ['', [Validators.required, Validators.maxLength(this.maxLengths.company.services)]],
-        about: ['', [Validators.required, validators.notOnlySpaces]],
-        logo: '',
-        cover: '',
+        description: [''],
       }),
     });
   }
@@ -176,6 +151,7 @@ export class SignUpComponent extends BaseComponent implements OnInit {
 
   async createProfile() {
     const user = this.form.get('user').value;
+    const company = this.form.get('company').value;
     this.formDisabled = true;
 
     const createUser$ = fromPromise(this.afAuth.auth.createUserWithEmailAndPassword(user.email, user.password));
@@ -183,7 +159,16 @@ export class SignUpComponent extends BaseComponent implements OnInit {
       firstName: user.firstName,
       lastName: user.lastName,
       email: user.email,
-      role: 'client'
+      role: user.role,
+      ...(user.role === 'vendor'
+        ? { 
+          company: {
+            name: company.name,
+            description: company.description
+          }
+        } 
+        : {}
+      )
     });
     const userData$ = () => this.afAuth.authState.pipe(
       filter(u => u && !!u.uid),

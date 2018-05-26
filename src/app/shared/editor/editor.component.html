@@ -1,0 +1,37 @@
+<p-editor #editor [formats]="formats" [id]="id" [placeholder]="placeholder" (onInit)="onEditorInit()"
+          (onTextChange)="valueChanged($event)"
+          [style]="{ height: '200px' }">
+  <p-header>
+    <div class="row">
+      <div class="col-8">
+        <span class="ql-formats">
+          <select class="ql-header">
+            <option></option>
+            <option value="1"></option>
+            <option value="2"></option>
+            <option value="3"></option>
+            <option value="4"></option>
+            <option value="5"></option>
+            <option value="6"></option>
+          </select>
+        </span>
+        <span class="ql-formats">
+          <button type="button" class="ql-bold"></button>
+          <button type="button" class="ql-italic"></button>
+          <button type="button" class="ql-underline"></button>
+          <button type="button" class="ql-link"></button>
+        </span>
+        <span class="ql-formats">
+          <button type="button" class="ql-list" value="ordered"></button>
+          <button type="button" class="ql-list" value="bullet"></button>
+        </span>
+      </div>
+      <div class="col text-right">
+        <span class="ql-formats" *ngIf="maxLength">
+          <span class="charactes-count">Characters: {{ textLength }}/{{ maxLength }}</span>
+        </span>
+      </div>
+    </div>
+  </p-header>
+</p-editor>
+

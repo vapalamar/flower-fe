@@ -75,7 +75,7 @@ export class PasswordComponent extends ControlComponent implements AfterContentI
   }
 
   private evaluateStrength() {
-    if (!this.model || (this.control && this.control.invalid)) {
+    if (!this.model) {
       this.passwordStrength = {};
       return;
     }

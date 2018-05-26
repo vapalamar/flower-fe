@@ -2,9 +2,7 @@
   <header class="welcome-header">
     <div class="container">
       <div class="d-flex justify-content-between align-items-center">
-        <a routerLink="/login" class="logo mr-4" id="qa-login-link-1">
-          <img src="assets/images/logo/horizontal-logo.svg" alt="Avisare">
-        </a>
+        <h1>FLOWER</h1>
         <a class="login-lnk" routerLink="/login" id="qa-login-link-2">
           Log in
         </a>
@@ -15,10 +13,9 @@
     <form [formGroup]="form" novalidate class="sign-up-area">
       <div formGroupName="user">
         <div class="step-holder">
-          <h1 class="text-center">WELCOME USERS!</h1>
+          <h1 class="text-center">WE'RE GLAD YOU'RE HERE!</h1>
           <p>
-            For vendors that want to bid on contracts &amp; grants, create your account and experience the simpler way to grow your business.
-            Spend 3 minutes to sign up for your free account. We never charge you to bid on opportunities!
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Delectus, labore a fugiat quae esse enim nobis asperiores at saepe qui non magni modi dolor eius deleniti eos suscipit laboriosam quam?
           </p>
           <div class="form-row">
             <div class="col">
@@ -54,6 +51,38 @@
               </div>
             </div>
           </div>
+          <div class="form-row">
+            <div class="form-group col">
+              <label>What kind of user you are?</label>
+              <div class="form-row">
+                <div class="col">
+                  <label>
+                    <input type="radio" id="user-type-vendor" value="vendor" formControlName="role" /> Vendor
+                  </label>
+                  <label class="ml-3">
+                    <input type="radio" id="user-type-client" value="client" formControlName="role" /> Client
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="form.get('user.role').value === 'vendor'" formGroupName="company">
+        <div class="form-row">
+          <div class="col col-4">
+            <div class="form-label">
+              <input type="text" id="company_name" class="form-control" formControlName="name" [maxlength]="maxLengths.company.name"
+              />
+              <label for="company_name">Company Name</label>
+              <fl-control-messages [control]="form.get('company.name')"></fl-control-messages>
+            </div>
+          </div>
+        </div>
+        <div class="form-group full-width col p0">
+          <label for="description">About Your Company</label>
+          <fl-editor formControlName="description" id="description" [maxLength]="maxLengths.company.about"></fl-editor>
+          <fl-control-messages [control]="form.get('company.description')"></fl-control-messages>
         </div>
       </div>
       <!-- <div *ngIf="currStep === 2" formGroupName="company">
@@ -123,19 +152,6 @@
               </avi-select>
               <label id="qa-what-products-and-services">What Products &amp; Services Do You Offer?</label>
               <avi-control-messages [control]="form.get('company.Services')"></avi-control-messages>
-            </div>
-          </div>
-          <div class="form-group">
-            <label>Are You An Independent Contractor?</label>
-            <div class="form-row">
-              <div class="col">
-                <label>
-                  <input type="radio" id="independent-contractor-no" [value]="companyTypes.Vendor" formControlName="type" /> No
-                </label>
-                <label class="ml-3">
-                  <input type="radio" id="independent-contractor-yes" [value]="companyTypes.Independent" formControlName="type" /> Yes
-                </label>
-              </div>
             </div>
           </div>
         </div>

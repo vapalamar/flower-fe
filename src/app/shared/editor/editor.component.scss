@@ -1,0 +1,50 @@
+@import '../../../assets/scss/utils/mixins';
+@import '../../../assets/scss/utils/functions';
+@import '../../../assets/scss/utils/bootstrap-variables';
+
+:host {
+  border-radius: 0.25em;
+  display: block;
+  ::ng-deep {
+    .ng-invalid {
+      .ui-editor-toolbar, .ui-editor-content {
+        border-color: #ed422e !important;
+      }
+    }
+
+    .charactes-count {
+      color: $gray-600;
+    }
+
+    .ql-editor {
+      overflow-wrap: break-word;
+      -ms-word-break: break-all;
+      word-break: break-word;
+      hyphens: auto;
+    }
+
+    .ui-editor-toolbar {
+      background: $gray-100;
+    }
+
+    *:before,
+    *:after {
+      box-sizing: content-box;
+      -webkit-box-sizing: content-box;
+      -ms-box-sizing: content-box;
+      -moz-box-sizing: content-box;
+      -o-box-sizing: content-box;
+    }
+  }
+}
+
+
+:host(.ng-touched.ng-invalid) {
+  ::ng-deep {
+    .ui-editor-toolbar, .ui-editor-content {
+      border-color: #ed422e !important;
+    }
+  }
+}
+
+

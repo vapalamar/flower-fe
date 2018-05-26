@@ -19,6 +19,7 @@ import { SidenavComponent } from './sidenav/sidenav.component';
 import { HeaderComponent } from './header/header.component';
 import { AuthenticatedGuard } from './authenticated/authenticated.guard';
 import { NonAuthenticatedGuard } from './non-authenticated/non-authenticated.guard';
+import { EditorComponent } from './editor/editor.component';
 
 const modules = [];
 const components = [
@@ -26,7 +27,8 @@ const components = [
   SpinnerComponent,
   PasswordComponent,
   SidenavComponent,
-  HeaderComponent
+  HeaderComponent,
+  EditorComponent
 ];
 
 @NgModule({

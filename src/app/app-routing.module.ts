@@ -7,55 +7,26 @@ import { NonAuthenticatedGuard } from './shared/non-authenticated/non-authentica
 
 const routes: Routes = [
   {
-    path: '',
-    canActivateChild: [AuthenticatedGuard],
+    path: 'dashboard',
     component: AppLayoutComponent,
-    children: [
-      {
-        path: 'dashboard',
-        children: [
-          {
-            path: '',
-            loadChildren: 'app/dashboard/dashboard.module#DashboardModule',
-          },
-        ],
-      },
-      {
-        path: '**',
-        redirectTo: '/login',
-        pathMatch: 'full',
-      },
-    ],
+    canActivateChild: [AuthenticatedGuard],
+    loadChildren: 'app/dashboard/dashboard.module#DashboardModule',
   },
   {
-    path: '',
+    path: 'signup',
     canActivateChild: [NonAuthenticatedGuard],
-    children: [
-      {
-        path: 'signup',
-        children: [
-          {
-            path: '',
-            loadChildren: 'app/signup/signup.module#SignUpModule',
-          },
-        ],
-      },
-      {
-        path: '',
-        component: AuthLayoutComponent,
-        children: [
-          {
-            path: 'login',
-            loadChildren: 'app/login/login.module#LoginModule',
-          },
-          {
-            path: '**',
-            redirectTo: '/login',
-            pathMatch: 'full',
-          },
-        ],
-      },
-    ],
+    loadChildren: 'app/signup/signup.module#SignUpModule',
+  },
+  {
+    path: 'login',
+    component: AuthLayoutComponent,
+    canActivateChild: [NonAuthenticatedGuard],
+    loadChildren: 'app/login/login.module#LoginModule',
+  },
+  {
+    path: '**',
+    redirectTo: '/login',
+    pathMatch: 'full',
   },
 ];
 
