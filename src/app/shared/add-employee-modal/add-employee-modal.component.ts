@@ -4,6 +4,7 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 import { Store } from '@ngrx/store';
 import { first, finalize, filter, switchMap, map, mergeMap } from 'rxjs/operators';
+import * as uuid from 'uuid';
 
 import { ApiService } from '../../api';
 import { AddEmployeeFormComponent } from '../add-employee-form/add-employee-form.component';
@@ -81,7 +82,7 @@ export class AddEmployeeModalComponent {
 
   addEmployee(employeeData) {
     this.formDisabled = true;
-    const putFile: Promise<any> = employeeData.photo ? this.afStorage.ref('files').put(employeeData.photo) : Promise.resolve(null) as any;
+    const putFile: Promise<any> = employeeData.photo ? this.afStorage.ref(`files/${uuid()}`).put(employeeData.photo) : Promise.resolve(null) as any;
     combineLatest(putFile, this.afAuth.authState.pipe(filter(Boolean), first()))
       .pipe(
         mergeMap(([file, u]) => {
@@ -100,7 +101,7 @@ export class AddEmployeeModalComponent {
   editEmployee(employeeData) {
     this.formDisabled = true;
     const putFile: Promise<any> = employeeData.photo && employeeData.photo.url !== employeeData.photoURL 
-      ? this.afStorage.ref('files').put(employeeData.photo) 
+      ? this.afStorage.ref(`files/${uuid()}`).put(employeeData.photo) 
       : Promise.resolve(null) as any;
     combineLatest(putFile, this.afAuth.authState.pipe(filter(Boolean), first()))
       .pipe(
