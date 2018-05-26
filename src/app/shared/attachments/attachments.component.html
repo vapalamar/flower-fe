@@ -1,0 +1,73 @@
+<div class="attachment-items d-print-none">
+  <div *ngFor="let attachment of attachments">
+    <ng-template [ngIf]="!onlyManageFile">
+      <div class="attached-item">
+        <div class="icon-area">
+          <i class="fa fa-link"></i>
+        </div>
+        <div class="attachment-info">
+          <strong>{{ attachment.title }}</strong>
+          <p>
+            <avi-see-more [dataIn]="attachment.description" [lengthText]="52" textBtn="more"></avi-see-more>
+          </p>
+          <ng-container *ngTemplateOutlet="manage; context: {attachment: attachment}"></ng-container>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template [ngIf]="onlyManageFile">
+      <ng-container *ngTemplateOutlet="manage; context: {attachment: attachment}"></ng-container>
+    </ng-template>
+  </div>
+</div>
+
+<ng-template #manage let-attachment="attachment">
+  <button type="button" id="btn-view-file" (click)="viewFile(attachment)" class="btn btn-link" *ngIf="canView">
+    <i class="fa fa-eye"></i>
+    View
+  </button>
+  <button type="button" id="btn-download-file" (click)="downloadFile(attachment)" class="btn btn-link" *ngIf="canDownload">
+    <i class="fa fa-download"></i>
+    Download
+  </button>
+  <button type="button" id="btn-delete-file" class="btn btn-link" *ngIf="canDelete" (click)="remove.emit(attachment)">
+    <i class="fa fa-trash"></i>
+    Delete
+  </button>
+</ng-template>
+
+<ng-template #previewModal>
+  <div class="modal-header">
+    <h4 class="modal-title">{{ modalRef.content.title }}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <h5 class="m0" *ngIf="!modalRef.content.isUploaded">Preview is Unavailable, files are uploading to the server</h5>
+    <div *ngIf="modalRef.content.isUploaded" [ngSwitch]="modalRef.content.viewMod">
+      <ng-template [ngSwitchCase]="'imgTag'">
+        <img class="view-area" [src]="modalRef.content.url">
+      </ng-template>
+      <ng-template [ngSwitchCase]="'iframe'">
+        <iframe *ngIf="!viewIEMessage" class="view-area document" [src]="modalRef.content.url"></iframe>
+        <h5 class="m0" *ngIf="viewIEMessage">
+          Preview is Unavailable in Internet Explorer. Please switch to Google Chrome or Safari or Firefox
+        </h5>
+      </ng-template>
+      <ng-template [ngSwitchCase]="'iframeWithGoogle'">
+        <iframe class="view-area document" [src]="modalRef.content.url"></iframe>
+      </ng-template>
+      <ng-template ngSwitchDefault>
+        <h5 class="m0">Preview is unavailable for this file extension</h5>
+      </ng-template>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" id="qa-btn-download-file" class="btn btn-outline-dark" (click)="downloadFile(modalRef.content, true)"
+      [disabled]="downloading">
+      <avi-spinner fill="#343a40"></avi-spinner>
+      <span>Download</span>
+    </button>
+    <button type="button" id="qa-btn-close-file" class="btn btn-outline-dark" (click)="modalRef.hide()">Close</button>
+  </div>
+</ng-template>

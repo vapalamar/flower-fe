@@ -26,6 +26,7 @@ import { ImageSelectComponent } from './image-select/image-select.component';
 import { CropImageComponent } from './image-select/crop-image/crop-image.component';
 import { VendorRoleGuard } from './vendor/vendor.guard';
 import { SeeMoreComponent } from './see-more/see-more.component';
+import { AttachmentsComponent } from './attachments/attachments.component';
 
 const modules = [];
 const components = [
@@ -39,7 +40,8 @@ const components = [
   AddEmployeeModalComponent,
   ImageSelectComponent,
   CropImageComponent,
-  SeeMoreComponent
+  SeeMoreComponent,
+  AttachmentsComponent
 ];
 
 @NgModule({
