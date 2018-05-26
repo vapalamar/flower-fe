@@ -23,6 +23,11 @@ const routes: Routes = [
         loadChildren: 'app/masters/masters.module#MastersModule'
       },
       {
+        path: 'services',
+        canActivate: [VendorRoleGuard],
+        loadChildren: 'app/services/services.module#ServicesModule'
+      },
+      {
         path: '',
         pathMatch: 'full',
         redirectTo: '/dashboard'

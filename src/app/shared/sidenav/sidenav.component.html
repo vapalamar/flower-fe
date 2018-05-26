@@ -18,6 +18,12 @@
               <span>Masters</span>
             </a>
           </li>
+          <li>
+              <a routerLink="/services" id="menu-services" [class.active]="isServicesTabActive">
+                <i class="fas fa-gavel"></i>
+                <span>Services</span>
+              </a>
+            </li>
         </ng-template>
         <!-- <ng-template [ngIf]="((isClientViewOnly$ | async) || (isVendor$ | async) || (isSuperAdmin$ | async))">
           <li>
