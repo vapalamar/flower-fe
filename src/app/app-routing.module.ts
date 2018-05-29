@@ -23,6 +23,7 @@ const routes: Routes = [
   },
   {
     path: '',
+    component: AppLayoutComponent,
     canActivateChild: [AuthenticatedGuard],
     children: [
       {
