@@ -108,4 +108,8 @@ export class ServiceFormComponent extends BaseComponent implements OnInit {
   setStep(step: number) {
     this.currStep = 1;
   }
+
+  cancel() {
+    this.router.navigate(['services']);
+  }
 }
