@@ -70,7 +70,7 @@
       </div>
       <div *ngIf="form.get('user.role').value === 'vendor'" formGroupName="company">
         <div class="form-row">
-          <div class="col col-4">
+          <div class="col">
             <div class="form-label">
               <input type="text" id="company_name" class="form-control" formControlName="name" [maxlength]="maxLengths.company.name"
               />

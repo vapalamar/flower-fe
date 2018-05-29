@@ -8,9 +8,22 @@ import { VendorRoleGuard } from './shared/vendor/vendor.guard';
 
 const routes: Routes = [
   {
+    path: 'all-services',
+    component: AppLayoutComponent,
+    children: [
+      {
+        path: ':id',
+        loadChildren: 'app/service-details/service-details.module#ServiceDetailsModule'
+      },
+      {
+        path: '',
+        loadChildren: 'app/services-view/services-view.module#ServicesViewModule'
+      }
+    ]
+  },
+  {
     path: '',
     canActivateChild: [AuthenticatedGuard],
-    component: AppLayoutComponent,
     children: [
       {
         path: 'dashboard',
@@ -33,10 +46,6 @@ const routes: Routes = [
           {
             path: ':id/edit',
             loadChildren: 'app/service-form/service-form.module#ServiceFormModule'
-          },
-          {
-            path: ':id',
-            loadChildren: 'app/service-details/service-details.module#ServiceDetailsModule'
           },
           {
             path: '',
