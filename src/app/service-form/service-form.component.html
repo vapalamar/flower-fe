@@ -1,3 +1,68 @@
-<p>
-  service-form works!
-</p>
+<form novalidate [formGroup]="form" (submit)="createService()">
+  <div class="row">
+    <div class="col">
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" formControlName="title" id="title" class="form-control" placeholder="Type your service title">
+        <fl-control-messages [control]="form.get('title')"></fl-control-messages>
+      </div>
+      <div class="form-group">
+        <label for="summary">Summary</label>
+        <div class="mt-2">
+          <fl-editor formControlName="summary" [maxLength]="maxLengths.summary" placeholder="Describe the provided service"
+            [validators]="requiredValidator"></fl-editor>
+        </div>
+        <fl-control-messages [control]="form.get('summary')"></fl-control-messages>
+      </div>
+      <div class="form-group">
+        <label for="business_types">Masters</label>
+        <fl-select [id]="'qa-business-category'" formControlName="masters" [options]="masters" [multiple]="true"
+          placeholder="Choose the masters" [accessCustomItem]="false"></fl-select>
+        <fl-control-messages [control]="form.get('masters')"></fl-control-messages>
+      </div>
+      <!-- <div class="form-group">
+        <label for="services">Vendor Product &amp; Service</label>
+        <div class="mb-1">
+          <label>
+            Press enter after typing in a custom product and service or select one from the drop down.
+          </label>
+        </div>
+        <fl-select *ngIf="services.length" [id]="'qa-services'" formControlName="Services" [options]="services" [accessCustomItem]="true" [multiple]="true"
+          [maxLength]="maxLengths.Services" placeholder="What Products & Services Are You Looking For" [showSearch]="true"
+          [maxLengthItem]="maxLengths.customService" [accessVirtualScroll]="true"></fl-select>
+      </div> -->
+      <div class="form-row">
+        <div class="col-12">
+          <div class="form-group">
+            <div class="form-row">
+              <div class="col">
+                <label for="max_budget">Price</label>
+                <fl-price-control formControlName="price" placeholder="0"></fl-price-control>
+                <fl-control-messages [control]="form.get('price')"></fl-control-messages>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer id="footer" class="sticky-footer">
+    <div class="row justify-content-center">
+      <div class="col-6">
+        <div class="form-row">
+          <div class="col">
+            <button type="button" id="btn-create-rfp" class="btn btn-success btn-block btn-lg" (click)="createService()" [disabled]="formDisabled">
+              <fl-spinner *ngIf="formDisabled" fill="#fff"></fl-spinner>
+              <span>Submit</span>
+            </button>
+          </div>
+          <div class="col">
+            <button type="button" id="btn-cancel" class="btn btn-link btn-block btn-lg" (click)="cancel()" [disabled]="formDisabled">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+</form>
+  

@@ -1,0 +1,65 @@
+@import '../../assets/scss/utils/bootstrap-variables';
+
+.result-wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.dropdown-list {
+  .dropdown-menu {
+    width: 20rem;
+    max-height: 350px;
+
+    &.budget-dropdown-width {
+      width: 23rem;
+    }
+  }
+
+  // TODO change classname in html from .btn-default to .btn-info and remove styles below
+  .deadline-btns {
+    .btn-default {
+      color: $color-lighter-blue;
+      &:hover {
+        color: $color-blue;
+      }
+    }
+  }
+}
+
+.detailed-block {
+  &__wrapper {
+    width: 57px;
+    text-align: center;
+  }
+  &__status {
+    display: inline-block;
+    margin: 32px auto 0 auto;
+  }
+}
+
+:host {
+  ::ng-deep {
+    .show-closed-rfps {
+      label {
+        margin-bottom: 0;
+        color: $black;
+      }
+    }
+
+    .errors-budget {
+      .error-message {
+        position: relative;
+      }
+    }
+  }
+}
+
+.split {
+  margin: 0 5px;
+}
+
+.sort-menu,
+.sort-title-wrapper {
+  width: 260px;
+}

@@ -25,7 +25,7 @@
   <ng-template [ngIf]="options?.length">
     <div class="dropdown-menu" *dropdownMenu>
       <div *ngIf="showVirtualScroll; else usualScroll">
-        <virtual-scroll class="scroll-list" #virtualScroll [bufferAmount]="15" [items]="options | sortCollection : sortParams : findValue"
+        <virtual-scroll class="scroll-list" #virtualScroll [bufferAmount]="15" [items]="options"
           (update)="viewPortItems = ($event.length > 70 ? [] : $event)">
           <div *ngFor="let option of viewPortItems" [id]="setId('option', id, option.id)" (click)="handleClick(option, $event)">
             <div class="dropdown-item list-item" [class.selected]="option.selected">
@@ -36,7 +36,7 @@
       </div>
 
       <ng-template #usualScroll>
-        <li *ngFor="let option of options | sortCollection : sortParams : findValue" [id]="setId('option', id, option.id)" (click)="handleClick(option, $event)">
+        <li *ngFor="let option of options" [id]="setId('option', id, option.id)" (click)="handleClick(option, $event)">
           <div class="dropdown-item" [class.selected]="option.selected">
             <ng-container *ngTemplateOutlet="showItemComponent; context: {option: option}">
             </ng-container>

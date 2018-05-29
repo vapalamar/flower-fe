@@ -1,0 +1,130 @@
+@import '../../assets/scss/utils/mixins';
+@import '../../assets/scss/utils/bootstrap-variables';
+
+.additional-panel {
+  display: flex;
+  flex-direction: row;
+
+  > div {
+    margin-right: 20px;
+  }
+
+  .panel-heading {
+    margin-bottom: 3px;
+  }
+
+  p {
+    color: $gray-600;
+    line-height: 18px;
+    font-size: 14px;
+    margin-bottom: 0.5rem;
+  }
+}
+
+.job-type-holder {
+  margin: 40px 0 12px;
+
+  input[type='radio'] {
+    visibility: hidden;
+    position: absolute;
+
+    &:checked + label {
+      background: $white;
+      color: $black;
+
+      .fas {
+        opacity: 1;
+      }
+
+      .check-circle {
+        border-color: $color-blue;
+      }
+    }
+  }
+}
+
+.job-type {
+  background: $color-primary-lighter;
+  min-height: 120px;
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 16px;
+  width: 156px;
+  text-align: center;
+  color: $gray-300;
+  @include inline-block(top);
+
+  &:hover {
+    background: $gray-100;
+  }
+
+  .check-circle {
+    margin: 0 0 10px;
+    border: 2px solid $color-blue;
+    display: inline-block;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    border-color: $gray-200;
+    font-size: 20px;
+  }
+
+  i {
+    color: $color-blue;
+    font-size: 14px;
+  }
+
+  .fas {
+    opacity: 0;
+  }
+}
+
+.vendor-holder {
+  min-height: 300px;
+  padding: 20px 50px;
+  font-size: 14px;
+
+  p {
+    color: $gray-600;
+    margin-bottom: 10px;
+  }
+
+  h3 {
+    font-size: 20px;
+    margin: 0 0 5px;
+  }
+}
+
+.faq-holder {
+  max-height: 700px;
+  overflow-y: scroll;
+}
+
+.contacts-list {
+  padding-top: 33px;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -5px;
+
+  li {
+    padding: 5px;
+    width: 50%;
+  }
+}
+
+.side-panel-footer {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+
+  > * {
+    margin-right: 10px;
+  }
+}
+
+.certification-item {
+  width: 80px;
+  max-width: 80px;
+}

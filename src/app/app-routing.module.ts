@@ -25,20 +25,23 @@ const routes: Routes = [
       {
         path: 'services',
         canActivate: [VendorRoleGuard],
-        loadChildren: 'app/services/services.module#ServicesModule',
         children: [
           {
             path: 'create',
             loadChildren: 'app/service-form/service-form.module#ServiceFormModule'
           },
           {
-            path: '/:id/edit',
+            path: ':id/edit',
             loadChildren: 'app/service-form/service-form.module#ServiceFormModule'
           },
           {
-            path: '/:id',
+            path: ':id',
             loadChildren: 'app/service-details/service-details.module#ServiceDetailsModule'
           },
+          {
+            path: '',
+            loadChildren: 'app/services/services.module#ServicesModule',
+          }
         ]
       },
       {

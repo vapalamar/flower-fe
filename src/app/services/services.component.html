@@ -1,13 +1,6 @@
 <fl-spinner *ngIf="isLoading && !services?.length"></fl-spinner>
 <div class="detailed-block" *ngIf="!isLoading || services?.length">
   <div class="card-frame" *ngFor="let service of services">
-    <div>
-      <div class="detailed-block__wrapper">
-        <div class="detailed-block__status badge badge-success" *ngIf="service.status">
-          {{service.status}}
-        </div>
-      </div>
-    </div>
     <div class="card-info">
       <div class="card-panel">
         <div class="row">
@@ -22,18 +15,16 @@
               </div>
             </div>
           </div>
-          <div class="col text-right">
+          <div class="col">
             <div class="card-controls">
-              <li class="actions-list__item dropdown-item-default">
-                <a class="btn btn-icon btn-block text-right btn-lg" [routerLink]="['/services', service.id, 'edit']">
-                  <i class="fas fa-pencil-alt"></i>
-                </a>
-              </li>
-              <li class="actions-list__item dropdown-item-default">
-                <button type="button" class="btn btn-icon btn-block text-right btn-lg" (click)="deleteRfp(service.id)">
-                  <i class="fas fa-trash-alt"></i>
-                </button>
-              </li>
+
+                  <a class="btn btn-icon btn-lg" [routerLink]="['/services', service.id, 'edit']">
+                    <i class="fas fa-pencil-alt"></i>
+                  </a>
+               
+                  <button type="button" class="btn btn-icon btn-lg" (click)="deleteService(service.id)">
+                    <i class="fas fa-trash-alt"></i>
+                  </button>
             </div>
           </div>
         </div>
@@ -50,5 +41,5 @@
   <div class="btn-group" *ngIf="services?.length < totalCount">
     <button type="button" id="qa-load-more" class="btn btn-outline-primary" (click)="loadMore()">Load more</button>
   </div>
-  <span *ngIf="!isLoading && !services?.length">No Search Results</span>
+  <span *ngIf="!isLoading && !services?.length">No Services</span>
 </div>

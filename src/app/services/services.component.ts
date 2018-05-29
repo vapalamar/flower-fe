@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { BaseComponent } from '../helpers/base.component';
-import { filter, mergeMap, map, finalize } from 'rxjs/operators';
+import { filter, mergeMap, map, finalize, first } from 'rxjs/operators';
 import { entries } from 'lodash-es';
 
 @Component({
@@ -22,12 +22,26 @@ export class ServicesComponent extends BaseComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.subs = this.afAuth.authState.pipe(
+    this.isLoading = true;
+    this.subs = this.getServices().subscribe(v => this.services = this.mapServices(v.services));
+  }
+
+  deleteService(id) {
+    this.afAuth.authState.pipe(
       filter(Boolean),
+      first(),
+      mergeMap(u => this.afDB.database.ref(`users/${u.uid}/services/${id}`).remove())
+    ).subscribe(() => this.getServices().subscribe(v => this.services = this.mapServices(v.services)))
+  }
+
+  getServices() {
+    return this.afAuth.authState.pipe(
+      filter(Boolean),
+      first(),
       mergeMap(u => this.afDB.database.ref(`users/${u.uid}`).once('value')),
       map(s => s && s.val()),
       finalize(() => (this.isLoading = false))
-    ).subscribe(v => this.services = this.mapServices(v.services));
+    );
   }
 
   private mapServices(servicesObj = {}) {
