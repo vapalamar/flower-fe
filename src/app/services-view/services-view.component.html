@@ -1,3 +1,89 @@
-<p>
-  services-view works!
-</p>
+<div class="table-responsive">
+  <!-- 248px - left nav width, 3.75 rem - left and right paddings -->
+  <!-- <ng-template [ngIf]="isBrowser" [ngIfElse]="tableHeader">
+    <sticky sticky-width="calc(100% - 248px - 3.75rem)">
+      <ng-container [ngTemplateOutlet]="tableHeader"></ng-container>
+    </sticky>
+  </ng-template>
+  <ng-template #tableHeader>
+    <table class="table companies-table">
+      <tr aviSorting [config]="configSortingHeader" (changeSort)="onChangeSort($event)" class="rfps-theme"></tr>
+    </table>
+  </ng-template> -->
+  <table class="table companies-table">
+    <tr>
+      <th>Service</th>
+      <th>Owner</th>
+      <th>Actions</th>
+    </tr>
+  </table>
+  <table class="table companies-table mb-0">
+    <tbody *ngIf="!isLoading">
+      <tr *ngFor="let service of services; trackBy: trackById">
+        <td>
+          <div class="row no-gutters">
+            <div class="col-12">
+              <h5 class="card-panel__title">
+                <a class="card-panel__title-link" [routerLink]="['/services', service.id]">
+                  {{service.title}}
+                </a>
+                <span class="card-panel__badge badge badge-success" *ngIf="service.status">{{ service.status }}</span>
+              </h5>
+            </div>
+          </div>
+          <div class="row no-gutters">
+            <div class="mb-3 col-9">
+              <span class="text-grey">ID: {{ service.id }}</span>
+            </div>
+          </div>
+          <div class="row no-gutters">
+            <div class="col-9">
+              <div class="text-dark">
+                <div class="text-grey text-uppercase">Price</div>
+                {{ service.price | currency: 'USD' : 'symbol-narrow' : '1.0-0'}}
+              </div>
+            </div>
+          </div>
+          <div class="row no-gutters">
+              <fl-see-more [dataIn]="service.summary" [lengthText]="150" [includeHtml]="true" [cutOnly]="true">
+                <a [routerLink]="['/services', service.id]" *ngIf="service.summary?.length >= 150">See more</a>
+              </fl-see-more>
+          </div>
+        </td>
+        <td>
+          <div class="text-dark">
+            {{ service.owner.company.name }}: {{ service.owner.firstName + ' ' + service.owner.lastName }}
+          </div>
+        </td>
+        <td>
+          <div class="mt-2">
+            <div class="card-controls">
+              <ul class="actions-list">
+                <li>
+                  <!-- <avi-follow-rfp [rfp]="rfp" (unfollow)="removeUnfollowService(rfp)"></avi-follow-rfp> -->
+                  <!-- <span>Follow link</span> -->
+                </li>
+                <li class="actions-list__item dropdown-item-default">
+                  <button class="btn btn-icon btn-block text-right btn-lg">
+                    <i class="fas fa-pencil-alt"></i>
+                  </button>
+                </li>
+                <li class="actions-list__item dropdown-item-default">
+                  <button type="button" class="btn btn-icon btn-block text-right btn-lg" (click)="blackListService(service.id)">
+                    <i class="fas fa-trash-alt"></i>
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr *ngIf="!isLoading && !services?.length">
+        <td colspan="3" class="text-center">
+          No Services
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<fl-spinner *ngIf="isLoading && !services.length"></fl-spinner>

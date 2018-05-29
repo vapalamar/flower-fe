@@ -2,7 +2,7 @@ import { Component, HostBinding, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
-import { delay, filter, find, map, withLatestFrom, mergeMap, share, tap } from 'rxjs/operators';
+import { delay, filter, find, map, withLatestFrom, mergeMap, share, tap, first } from 'rxjs/operators';
 
 import { BaseComponent } from '../../helpers/base.component';
 import { User } from '../../models';
@@ -40,6 +40,8 @@ export class SidenavComponent extends BaseComponent implements OnInit {
   isDashboardActive: boolean;
   isMastersTabActive: boolean;
   isServicesTabActive: boolean;
+  isServicesViewTabActive: boolean;
+  user: any;
 
   // isVendorAdmin$ = this.role$.pipe(map(role => role === EmployeeRole.VendorAdmin));
 
@@ -86,27 +88,29 @@ export class SidenavComponent extends BaseComponent implements OnInit {
       this.avatar$.subscribe(avatar => this.avatar = avatar),
       this.userFullName$.subscribe(name => this.userFullName = name),
     ];
+    this.afAuth.authState.pipe(first()).subscribe(u => this.user = u);
     // this.store
     //   .select(getAuthUser)
     //   .pipe(find(Boolean))
     //   .subscribe(user => this.setActiveStates(this.router.url, user));
 
     this.subs = this.router.events
-      .pipe(filter(e => e instanceof NavigationEnd), withLatestFrom(this.role$))
-      .subscribe(([, user]) => this.setActiveStates(this.router.url, user));
+      .pipe(filter(e => e instanceof NavigationEnd))
+      .subscribe(() => this.setActiveStates(this.router.url));
 
     this.subs = this.role$.subscribe(role => {
       this.role = role;
       this.isClient = role === 'CLIENT';
       this.isVendor = !this.isClient;
-      this.setActiveStates(this.router.url, role);
+      this.setActiveStates(this.router.url);
     });
   }
 
-  private setActiveStates(url: string, user: User) {
+  private setActiveStates(url: string) {
     this.isDashboardActive = Boolean(url.match(/^\/dashboard/));
     this.isMastersTabActive = Boolean(url.match(/^\/masters/));
     this.isServicesTabActive = Boolean(url.match(/^\/services/));
+    this.isServicesViewTabActive = Boolean(url.match(/^\/all-services/));
   //   if (user.Employee.role === EmployeeRole.SuperAdmin) {
   //     const hasQueryParams = url.indexOf('?') !== -1;
   //     const pureUrl = hasQueryParams ? url.slice(0, url.indexOf('?')) : url;
