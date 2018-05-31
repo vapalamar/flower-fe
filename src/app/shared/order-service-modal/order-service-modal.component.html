@@ -1,0 +1,17 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left">Create order</h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()" [disabled]="formDisabled">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body" *ngIf="bsModalRef.content">
+  <fl-order-service-form #order [serviceId]="bsModalRef.content.serviceId" [adminId]="bsModalRef.content.adminId"></fl-order-service-form>
+  <div class="text-right">
+    <button type="button" class="btn btn-outline-secondary" id="btn-cancel"  (click)="bsModalRef.hide()" [disabled]="formDisabled">Cancel</button>
+    <button type="button" class="btn btn-primary ml-3" id="btn-save-user" (click)="submitReview()" [disabled]="formDisabled">
+      <fl-spinner fill="#fff"></fl-spinner>
+      <span>Submit</span>
+    </button>
+  </div>
+</div>
+    

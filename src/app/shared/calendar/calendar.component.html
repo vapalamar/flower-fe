@@ -1,0 +1,16 @@
+<p-calendar [ngModel]="model" (ngModelChange)="modelChange($event)" [id]="inputId" [selectionMode]="selectionMode" [inline]="inline"
+  [placeholder]="placeholder" [readonlyInput]="readonlyInput" [minDate]="minDate" [maxDate]="maxDate"></p-calendar>
+<ng-template [ngIf]="upcomingDates">
+  <div class="btn-group deadline-btns">
+    <button type="button" class="btn btn-link" [id]="inputId + '-btn-set-today'" (click)="setCalendarSetting(upcommingDates.Today)">Today</button>
+    <button type="button" class="btn btn-link" [id]="inputId + '-btn-set-3-days'" (click)="setCalendarSetting(upcommingDates.Next3Days)">3 Days</button>
+    <button type="button" class="btn btn-link" [id]="inputId + '-btn-set-3-days'" (click)="setCalendarSetting(upcommingDates.Next5Days)">5 Days</button>
+    <button type="button" class="btn btn-link" [id]="inputId + '-btn-set-1-week'" (click)="setCalendarSetting(upcommingDates.Next1Week)">1 Week</button>
+  </div>
+  <div class="btn-group deadline-btns">
+    <button type="button" class="btn btn-link" [id]="inputId + '-btn-till-next-week'" (click)="setCalendarSetting(upcommingDates.TillNextWeek)">Till Next Week
+    </button>
+    <button type="button" class="btn btn-link" [id]="inputId + '-btn-till-next-month'" (click)="setCalendarSetting(upcommingDates.TillNextMonth)">Till Next Month
+    </button>
+  </div>
+</ng-template>

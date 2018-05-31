@@ -6,6 +6,7 @@ import { filter, first, tap, mergeMap, map } from 'rxjs/operators';
 import { entries, omit } from 'lodash-es';
 import { AddCompanyReviewModalComponent } from '../shared/add-company-review-modal/add-company-review-modal.component';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { OrderServiceModalComponent } from '../shared/order-service-modal/order-service-modal.component';
 
 @Component({
   selector: 'fl-services-view',
@@ -51,5 +52,15 @@ export class ServicesViewComponent extends BaseComponent implements OnInit {
     });
 
     this.bsModalRef.content.adminId = adminId;
+  }
+
+  openOrderModel(service: any) {
+    this.bsModalRef = this.modal.show(OrderServiceModalComponent, {
+      class: 'modal-lg',
+      backdrop: 'static'
+    });
+
+    this.bsModalRef.content.adminId = service.owner.id;
+    this.bsModalRef.content.serviceId = service.id;
   }
 }

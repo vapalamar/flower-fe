@@ -1,0 +1,58 @@
+<form [formGroup]="form" novalidate *ngIf="form">
+  <div class="form-group">
+    <label for="master">Masters</label>
+    <fl-select formControlName="master" id="master" [options]="service?.masters" [multiple]="false"
+      placeholder="Choose the master" [accessCustomItem]="false"></fl-select>
+    <fl-control-messages [control]="form.get('master')"></fl-control-messages>
+  </div>
+  <div class="form-row" *ngIf="service.includeMaps">
+    <div class="col">
+      <label for="place">Where</label>
+      <input type="text" class="form-control col-9" id="place" flGPlaceAutocomplete formControlName="place">
+    </div>
+    <div class="col">
+      <div class="map-sidebar sidebar-column panel-body has-shadow" *ngIf="address">
+        <fl-map #map [address]="address"></fl-map>
+      </div>
+    </div>
+  </div>
+  <div class="form-row" *ngIf="service.includeCalendar">
+    <div class="col">
+      <div class="form-group mb-1">
+        <label>
+          When
+        </label>
+        <fl-calendar class="block" formControlName="time" placeholder="MM/DD/YYYY"
+          readonlyInput="true" [minDate]="todayDate"></fl-calendar>
+      </div>
+    </div>
+  </div>
+  <ng-template [ngIf]="!userExists">
+    <div class="form-row">
+      <div class="col">
+        <div class="form-group">
+          <label for="first_name">First name</label>
+          <input type="text" placeholder="Enter your first name" [formControl]="form.get('firstName')" class="form-control">
+          <fl-control-messages [control]="form.get('firstName')"></fl-control-messages>
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-group">
+          <label for="last_name">Last name</label>
+          <input type="text" placeholder="Enter your last name" [formControl]="form.get('lastName')" id="last_name" class="form-control">
+          <fl-control-messages [control]="form.get('lastName')"></fl-control-messages>
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col">
+        <div class="form-group">
+          <label for="job_title">Email</label>
+          <input type="text" placeholder="Enter your email" [formControl]="form.get('email')" class="form-control">
+          <fl-control-messages [control]="form.get('email')"></fl-control-messages>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</form>
+  

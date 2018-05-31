@@ -33,6 +33,9 @@ import { AddCompanyReviewModalComponent } from './add-company-review-modal/add-c
 import { AddCompanyReviewFormComponent } from './add-company-review-form/add-company-review-form.component';
 import { MapComponent } from './map/map.component';
 import { GPlaceAutocompleteComponent } from './g-place-autocomplete/g-place-autocomplete.component';
+import { OrderServiceModalComponent } from './order-service-modal/order-service-modal.component';
+import { OrderServiceFormComponent } from './order-service-form/order-service-form.component';
+import { CalendarModule } from './calendar/calendar.module';
 
 const modules = [];
 const components = [
@@ -53,7 +56,9 @@ const components = [
   AddCompanyReviewModalComponent,
   AddCompanyReviewFormComponent,
   MapComponent,
-  GPlaceAutocompleteComponent
+  GPlaceAutocompleteComponent,
+  OrderServiceModalComponent,
+  OrderServiceFormComponent
 ];
 
 @NgModule({
@@ -69,10 +74,16 @@ const components = [
     TooltipModule,
     EditorModule,
     NgxMaskModule,
+    CalendarModule
   ],
   declarations: [...components],
   exports: [...modules, ...components],
-  entryComponents: [AddEmployeeModalComponent, CropImageComponent, AddCompanyReviewModalComponent]
+  entryComponents: [
+    AddEmployeeModalComponent,
+    CropImageComponent,
+    AddCompanyReviewModalComponent,
+    OrderServiceModalComponent
+  ]
 })
 export class SharedModule {
   static forRoot(): ModuleWithProviders {

@@ -1,0 +1,13 @@
+@import '../../../assets/scss/utils/mixins';
+@import '../../../assets/scss/utils/functions';
+@import '../../../assets/scss/utils/bootstrap-variables';
+
+// TODO change classname in html from .btn-default to .btn-info and remove styles below
+.deadline-btns {
+  .btn-default {
+    color: $color-lighter-blue;
+    &:hover {
+      color: $color-blue;
+    }
+  }
+}
