@@ -1,0 +1,37 @@
+<form [formGroup]="form" novalidate>
+  <div class="form-group">
+    <label for="summary">Review</label>
+    <div class="mt-2">
+      <fl-editor formControlName="text" [maxLength]="500" placeholder="Describe the provided service"></fl-editor>
+    </div>
+    <fl-control-messages [control]="form.get('text')"></fl-control-messages>
+  </div>
+  <ng-template [ngIf]="!userExists">
+      <div class="form-row">
+          <div class="col">
+            <div class="form-group">
+              <label for="first_name">First name</label>
+              <input type="text" placeholder="Enter your first name" [formControl]="form.get('firstName')" class="form-control">
+              <fl-control-messages [control]="form.get('firstName')"></fl-control-messages>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label for="last_name">Last name</label>
+              <input type="text" placeholder="Enter your last name" [formControl]="form.get('lastName')" id="last_name" class="form-control">
+              <fl-control-messages [control]="form.get('lastName')"></fl-control-messages>
+            </div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="col">
+            <div class="form-group">
+              <label for="job_title">Email</label>
+              <input type="text" placeholder="Enter your email" [formControl]="form.get('email')" class="form-control">
+              <fl-control-messages [control]="form.get('email')"></fl-control-messages>
+            </div>
+          </div>
+        </div>
+  </ng-template>
+</form>
+  

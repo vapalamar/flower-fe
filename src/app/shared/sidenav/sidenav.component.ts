@@ -22,7 +22,8 @@ export class SidenavComponent extends BaseComponent implements OnInit {
   .pipe(
     filter(Boolean),
     mergeMap(u => this.afDb.database.ref(`users/${u.uid}`).once('value')),
-    map(u => u && u.val())
+    map(u => u && u.val()),
+    filter(Boolean)
   );
   avatar$ = this.afAuth.authState.pipe(delay(1000), filter(Boolean), map((u: UserInfo) => u.photoURL));
 

@@ -10,7 +10,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
     CommonModule,
     ServicesViewRoutingModule,
     SharedModule,
-    BsDropdownModule
+    BsDropdownModule,
   ],
   declarations: [ServicesViewComponent]
 })

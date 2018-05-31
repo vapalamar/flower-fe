@@ -68,7 +68,7 @@
                 </button>
                 <ul *dropdownMenu class="dropdown-menu dropdown-menu-right" role="menu">
                   <li class="dropdown-item-default">
-                    <button type="button" class="btn btn-link btn-block text-right">
+                    <button type="button" class="btn btn-link btn-block text-right" (click)="openCompanyReviewModal(service.owner.id)">
                       Company review
                     </button>
                   </li>

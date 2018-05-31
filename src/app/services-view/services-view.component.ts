@@ -4,6 +4,8 @@ import { AngularFireDatabase } from 'angularfire2/database';
 import { BaseComponent } from '../helpers/base.component';
 import { filter, first, tap, mergeMap, map } from 'rxjs/operators';
 import { entries, omit } from 'lodash-es';
+import { AddCompanyReviewModalComponent } from '../shared/add-company-review-modal/add-company-review-modal.component';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'fl-services-view',
@@ -13,10 +15,12 @@ import { entries, omit } from 'lodash-es';
 export class ServicesViewComponent extends BaseComponent implements OnInit {
   services: any[];
   user: any;
+  bsModalRef: BsModalRef;
 
   constructor(
     private afAuth: AngularFireAuth,
-    private afDB: AngularFireDatabase
+    private afDB: AngularFireDatabase,
+    private modal: BsModalService,
   ) {
     super();
   }
@@ -38,5 +42,14 @@ export class ServicesViewComponent extends BaseComponent implements OnInit {
 
   trackById(i: number, s: any) {
     return s.id;
+  }
+
+  openCompanyReviewModal(adminId: string) {
+    this.bsModalRef = this.modal.show(AddCompanyReviewModalComponent, {
+      class: 'modal-lg',
+      backdrop: 'static',
+    });
+
+    this.bsModalRef.content.adminId = adminId;
   }
 }

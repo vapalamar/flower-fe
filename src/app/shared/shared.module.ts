@@ -29,6 +29,8 @@ import { SeeMoreComponent } from './see-more/see-more.component';
 import { AttachmentsComponent } from './attachments/attachments.component';
 import { PriceControlComponent } from './price-control/price-control.component';
 import { SelectComponent } from './select/select.component';
+import { AddCompanyReviewModalComponent } from './add-company-review-modal/add-company-review-modal.component';
+import { AddCompanyReviewFormComponent } from './add-company-review-form/add-company-review-form.component';
 
 const modules = [];
 const components = [
@@ -45,7 +47,9 @@ const components = [
   SeeMoreComponent,
   AttachmentsComponent,
   PriceControlComponent,
-  SelectComponent
+  SelectComponent,
+  AddCompanyReviewModalComponent,
+  AddCompanyReviewFormComponent
 ];
 
 @NgModule({
@@ -64,7 +68,7 @@ const components = [
   ],
   declarations: [...components],
   exports: [...modules, ...components],
-  entryComponents: [AddEmployeeModalComponent, CropImageComponent]
+  entryComponents: [AddEmployeeModalComponent, CropImageComponent, AddCompanyReviewModalComponent]
 })
 export class SharedModule {
   static forRoot(): ModuleWithProviders {
