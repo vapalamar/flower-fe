@@ -14,7 +14,7 @@
     <tr>
       <th>Service</th>
       <th>Owner</th>
-      <th>Actions</th>
+      <th></th>
     </tr>
   </table>
   <table class="table companies-table mb-0">
@@ -58,22 +58,27 @@
         <td>
           <div class="mt-2">
             <div class="card-controls">
-              <ul class="actions-list">
-                <li>
-                  <!-- <avi-follow-rfp [rfp]="rfp" (unfollow)="removeUnfollowService(rfp)"></avi-follow-rfp> -->
-                  <!-- <span>Follow link</span> -->
-                </li>
-                <li class="actions-list__item dropdown-item-default">
-                  <button class="btn btn-icon btn-block text-right btn-lg">
-                    <i class="fas fa-pencil-alt"></i>
-                  </button>
-                </li>
-                <li class="actions-list__item dropdown-item-default">
-                  <button type="button" class="btn btn-icon btn-block text-right btn-lg" (click)="blackListService(service.id)">
-                    <i class="fas fa-trash-alt"></i>
-                  </button>
-                </li>
-              </ul>
+              <div class="relative" dropdown placement="right">
+                <button dropdownToggle type="button" class="drop-control btn dropdown-toggle">
+                  <div class="control">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </div>
+                </button>
+                <ul *dropdownMenu class="dropdown-menu dropdown-menu-right" role="menu">
+                  <li class="dropdown-item-default">
+                    <button type="button" class="btn btn-link btn-block text-right">
+                      Company review
+                    </button>
+                  </li>
+                  <li class="dropdown-item-default">
+                    <button type="button" class="btn btn-link btn-block text-right">
+                      Archive
+                    </button>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </td>

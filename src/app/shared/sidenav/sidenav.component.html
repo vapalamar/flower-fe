@@ -25,13 +25,13 @@
             </a>
           </li>
         </ng-template>
-        <ng-template *ngIf="!user || isClient">
-            <li>
-              <a routerLink="/all-services" id="menu-services" [class.active]="isServicesViewTabActive">
-                <i class="fas fa-gavel"></i>
-                <span>Services</span>
-              </a>
-            </li>
+        <ng-template [ngIf]="!user || isClient">
+          <li>
+            <a routerLink="/all-services" id="menu-services" [class.active]="isServicesViewTabActive">
+              <i class="fas fa-gavel"></i>
+              <span>Services</span>
+            </a>
+          </li>
         </ng-template>
         <!-- <ng-template [ngIf]="((isClientViewOnly$ | async) || (isVendor$ | async) || (isSuperAdmin$ | async))">
           <li>

@@ -155,12 +155,12 @@
   }
   td, th {
     &:first-child {
-      width: 60%;
+      width: 75%;
     }
 
-    // &:nth-child(2) {
-    //   width: 14%;
-    // }
+    &:nth-child(2) {
+      width: 15%;
+    }
   }
 }
 
