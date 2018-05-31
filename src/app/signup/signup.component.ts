@@ -3,7 +3,7 @@ import { Component, Inject, OnInit, PLATFORM_ID, ViewChild } from '@angular/core
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { get, set } from 'lodash';
+import { get, set } from 'lodash-es';
 import { BsModalRef, BsModalService, ModalDirective } from 'ngx-bootstrap';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';

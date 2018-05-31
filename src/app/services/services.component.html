@@ -29,8 +29,7 @@
           </div>
         </div>
         <p>
-          <fl-see-more [dataIn]="service.summary" [lengthText]="150" [includeHtml]="true" [cutOnly]="true">
-            <a [routerLink]="['/services', service.id]" *ngIf="service.summary?.length >= 150">See more</a>
+          <fl-see-more [dataIn]="service.summary" [lengthText]="150" [includeHtml]="true">
           </fl-see-more>
         </p>
       </div>

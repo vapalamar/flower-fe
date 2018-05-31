@@ -31,6 +31,8 @@ import { PriceControlComponent } from './price-control/price-control.component';
 import { SelectComponent } from './select/select.component';
 import { AddCompanyReviewModalComponent } from './add-company-review-modal/add-company-review-modal.component';
 import { AddCompanyReviewFormComponent } from './add-company-review-form/add-company-review-form.component';
+import { MapComponent } from './map/map.component';
+import { GPlaceAutocompleteComponent } from './g-place-autocomplete/g-place-autocomplete.component';
 
 const modules = [];
 const components = [
@@ -49,7 +51,9 @@ const components = [
   PriceControlComponent,
   SelectComponent,
   AddCompanyReviewModalComponent,
-  AddCompanyReviewFormComponent
+  AddCompanyReviewFormComponent,
+  MapComponent,
+  GPlaceAutocompleteComponent
 ];
 
 @NgModule({

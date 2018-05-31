@@ -45,6 +45,10 @@ export class ServiceFormComponent extends BaseComponent implements OnInit {
       summary: ['', this.requiredValidator],
       masters: [[]],
       price: ['', [Validators.min(0)]],
+      includeMaps: [false],
+      includeChat: [false],
+      includeCalendar: [false],
+      includeFeedback: [false]
     });
 
     const route = this.route.params

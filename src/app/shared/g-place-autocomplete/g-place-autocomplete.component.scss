@@ -1,0 +1,50 @@
+/* These are the default styles applied to the stock Google Places Autocomplete component.
+   Importantly they preserve the required "powered by Google" logo. */
+@import '../../../assets/scss/utils/mixins';
+@import '../../../assets/scss/utils/bootstrap-variables';
+
+::ng-deep {
+  .pac-container {
+    padding: 0.5rem 0;
+    border: 1px solid rgba($black, 0.15);
+    border-radius: 0.3rem;
+    box-sizing: content-box;
+    box-shadow: none;
+
+    .pac-item {
+      width: 100%;
+      padding: 0.25rem 1.5rem;
+      border: none;
+      line-height: $line-height-base;
+      font-size: inherit;
+      color: $gray-900;
+      font-family: $base-font-sans-serif;
+      cursor: pointer;
+
+      &:hover {
+        background-color: $gray-100;
+      }
+
+      &:acitve {
+        background-color: $color-light-blue;
+      }
+
+      .pac-icon-marker {
+        display: none;
+      }
+
+      .pac-item-query {
+        font-size: inherit;
+        color: $gray-900;
+      }
+
+      .pac-matched {
+        font-weight: 600;
+      }
+    }
+
+    &:after {
+      background-position: center;
+    }
+  }
+}

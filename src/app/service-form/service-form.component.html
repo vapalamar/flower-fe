@@ -20,17 +20,6 @@
           placeholder="Choose the masters" [accessCustomItem]="false"></fl-select>
         <fl-control-messages [control]="form.get('masters')"></fl-control-messages>
       </div>
-      <!-- <div class="form-group">
-        <label for="services">Vendor Product &amp; Service</label>
-        <div class="mb-1">
-          <label>
-            Press enter after typing in a custom product and service or select one from the drop down.
-          </label>
-        </div>
-        <fl-select *ngIf="services.length" [id]="'qa-services'" formControlName="Services" [options]="services" [accessCustomItem]="true" [multiple]="true"
-          [maxLength]="maxLengths.Services" placeholder="What Products & Services Are You Looking For" [showSearch]="true"
-          [maxLengthItem]="maxLengths.customService" [accessVirtualScroll]="true"></fl-select>
-      </div> -->
       <div class="form-row">
         <div class="col-12">
           <div class="form-group">
@@ -42,6 +31,61 @@
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h3>Additional features:</h3>
+
+  <div class="row">
+    <div class="col-10">
+      <div class="additional-panel">
+        <div>
+          <div class="flat-checkbox">
+            <input type="checkbox" id="mapsOn" formControlName="includeMaps">
+            <label for="mapsOn"></label>
+          </div>
+        </div>
+        <div class="full-width">
+          <h4 class="panel-heading">Include map</h4>
+          <p>Use it if your service may be provided in differrent places.</p>
+        </div>
+      </div>
+      <div class="additional-panel">
+        <div>
+          <div class="flat-checkbox">
+            <input type="checkbox" id="chatOn" formControlName="includeChat">
+            <label for="chatOn"></label>
+          </div>
+        </div>
+        <div class="full-width">
+          <h4 class="panel-heading">Include chat</h4>
+          <p>Allows customer to contact you and have the real-time conversation with you about the service you provide.</p>
+        </div>
+      </div>
+      <div class="additional-panel">
+        <div>
+          <div class="flat-checkbox">
+            <input type="checkbox" id="calendarOn" formControlName="includeCalendar">
+            <label for="calendarOn"></label>
+          </div>
+        </div>
+        <div class="full-width">
+          <h4 class="panel-heading">Include calendar</h4>
+          <p>Use it if your service may be provided in specific dates.</p>
+        </div>
+      </div>
+      <div class="additional-panel">
+        <div>
+          <div class="flat-checkbox">
+            <input type="checkbox" id="feedbackOn" formControlName="includeFeedback">
+            <label for="feedbackOn"></label>
+          </div>
+        </div>
+        <div class="full-width">
+          <h4 class="panel-heading">Include user feedback form</h4>
+          <p>Use it if you want to allow customers to leave a feedback about the service you provide.</p>
         </div>
       </div>
     </div>
