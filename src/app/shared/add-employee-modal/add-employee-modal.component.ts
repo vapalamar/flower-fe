@@ -35,10 +35,9 @@ export class AddEmployeeModalComponent {
   formDisabled = false;
 
   constructor(
-    public modalRef: BsModalRef,
     private api: ApiService,
     private modal: BsModalService,
-    private bsModalRef: BsModalRef,
+    public bsModalRef: BsModalRef,
     private toastr: ToastrService,
     private store: Store<AppState>,
     private afAuth: AngularFireAuth,

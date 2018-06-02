@@ -21,7 +21,7 @@ export class AddCompanyReviewModalComponent {
   
   constructor(
     private modal: BsModalService,
-    private bsModalRef: BsModalRef,
+    public bsModalRef: BsModalRef,
     private toastr: ToastrService,
     private afAuth: AngularFireAuth,
     private afDB: AngularFireDatabase,
