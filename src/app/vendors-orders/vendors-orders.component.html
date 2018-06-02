@@ -1,3 +1,21 @@
-<p>
-  vendors-orders works!
-</p>
+<div class="row bb-1" *ngFor="let order of orders">
+  <div class="col pt-2 mb-2">
+    <div class="note">
+      <div class="d-flex align-items-start">
+        <div class="full-width">
+          <strong class="fs-14 mr-1">
+            {{ order.firstName }} {{ order.lastName}} ordered {{order.service.title}}
+          </strong>
+          <span class="date fs-14" *ngIf="order.time">{{order.time | date:'MMM dd, yyyy'}}</span>
+          <div>
+            <p class="m0">Master: {{order.masterInfo.firstName}} {{order.masterInfo.lastName}}</p>
+            <p class="m0">Contact Info: <a class="text-grey" [href]="'mailto:' + order.email">{{order.email}}</a></p>
+          </div>
+          <div *ngIf="order.place" class="map-sidebar sidebar-column panel-body has-shadow mt-2">
+            <fl-map [address]="order.place.address"></fl-map>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
