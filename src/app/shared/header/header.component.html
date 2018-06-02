@@ -10,14 +10,11 @@
             <i class="fa fa-envelope"></i>
           </a>
         </li>
-        <li *ngIf="employee$ | async as employee">
+        <li *ngIf="employee$ | async as employee; else loginLink">
           <div class="company-panel" dropdown placement="bottom right">
             <a href class="overflow-ellipsis" (click)="false" dropdownToggle>
               {{ employee.company ? employee.company.name : employee.firstName + ' ' + employee.lastName }}
             </a>
-            <div class="img-area" *ngIf="employee.Company">
-              <img [src]="employee.Company.Image.url" [alt]="employee.Company.name" />
-            </div>
             <ul *dropdownMenu class="dropdown-menu dropdown-menu-right">
               <li>
                 <button type="button" class="dropdown-item" (click)="logout(); false">
@@ -28,6 +25,9 @@
             </ul>
           </div>
         </li>
+        <ng-template #loginLink>
+          <a routerLink="/login">Login or Sign Up</a>
+        </ng-template>
       </ul>
     </div>
   </div>
