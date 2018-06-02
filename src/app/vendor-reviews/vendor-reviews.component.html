@@ -1,3 +1,15 @@
-<p>
-  vendor-reviews works!
-</p>
+<div class="row bb-1" *ngFor="let review of reviews">
+  <div class="col pt-2 mb-2">
+    <div class="note">
+      <div class="d-flex align-items-start">
+        <div class="full-width">
+          <strong class="fs-14 mr-1">
+            {{ review.firstName }} {{ review.lastName}}
+          </strong>
+          <a class="text-grey" [href]="'mailto:' + review.email">{{review.email}}</a>
+          <div [innerHTML]="review.text"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
