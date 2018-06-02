@@ -1,3 +1,17 @@
-<p>
-  client-orders works!
-</p>
+<div class="row bb-1" *ngFor="let order of orders">
+  <div class="col pt-2 mb-2">
+    <div class="note">
+      <div class="d-flex align-items-start">
+        <div class="full-width">
+          <strong class="fs-14 mr-1">
+            {{ order.master.firstName }} {{ order.master.lastName}} from {{order.vendor.name}}
+          </strong>
+          <span class="date fs-14" *ngIf="order.time">{{order.time | date:'MMM dd, yyyy'}}</span>
+          <div *ngIf="order.place" class="map-sidebar sidebar-column panel-body has-shadow mt-2">
+            <fl-map [address]="order.place.address"></fl-map>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

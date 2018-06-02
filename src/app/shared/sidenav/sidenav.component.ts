@@ -21,6 +21,7 @@ export class SidenavComponent extends BaseComponent implements OnInit {
   userData$ = this.afAuth.authState
   .pipe(
     filter(Boolean),
+    tap(u => console.log(u)),
     mergeMap(u => this.afDb.database.ref(`users/${u.uid}`).once('value')),
     map(u => u && u.val()),
     filter(Boolean)
@@ -91,7 +92,7 @@ export class SidenavComponent extends BaseComponent implements OnInit {
       this.avatar$.subscribe(avatar => this.avatar = avatar),
       this.userFullName$.subscribe(name => this.userFullName = name),
     ];
-    this.afAuth.authState.pipe(first()).subscribe(u => this.user = u);
+    this.subs = this.afAuth.authState.subscribe(u => this.user = u);
     // this.store
     //   .select(getAuthUser)
     //   .pipe(find(Boolean))
@@ -104,7 +105,7 @@ export class SidenavComponent extends BaseComponent implements OnInit {
     this.subs = this.role$.subscribe(role => {
       this.role = role;
       this.isClient = role === 'CLIENT';
-      this.isVendor = !this.isClient;
+      this.isVendor = role === 'VENDOR';
       this.setActiveStates(this.router.url);
     });
   }
