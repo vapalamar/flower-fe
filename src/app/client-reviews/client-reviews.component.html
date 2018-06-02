@@ -1,3 +1,14 @@
-<p>
-  client-reviews works!
-</p>
+<div class="row bb-1" *ngFor="let review of reviews">
+  <div class="col pt-2 mb-2">
+    <div class="note">
+      <div class="d-flex align-items-start">
+        <div class="full-width">
+          <strong class="fs-14 mr-1">
+            {{ review.companyName }}
+          </strong>
+          <div [innerHTML]="review.review"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
