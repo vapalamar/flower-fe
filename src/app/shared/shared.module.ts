@@ -36,6 +36,7 @@ import { GPlaceAutocompleteComponent } from './g-place-autocomplete/g-place-auto
 import { OrderServiceModalComponent } from './order-service-modal/order-service-modal.component';
 import { OrderServiceFormComponent } from './order-service-form/order-service-form.component';
 import { CalendarModule } from './calendar/calendar.module';
+import { ClientRoleGuard } from './client/client.guard';
 
 const modules = [];
 const components = [
@@ -96,6 +97,7 @@ export class SharedModule {
         AuthenticatedGuard,
         NonAuthenticatedGuard,
         VendorRoleGuard,
+        ClientRoleGuard,
         RedirectService,
         // RoleVendorGuard,
         // RoleClientGuard,

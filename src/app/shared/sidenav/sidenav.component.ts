@@ -42,6 +42,8 @@ export class SidenavComponent extends BaseComponent implements OnInit {
   isMastersTabActive: boolean;
   isServicesTabActive: boolean;
   isServicesViewTabActive: boolean;
+  isMyReviewsTabActive: boolean;
+  isMyOrdersTabActive: boolean;
   user: any;
 
   // isVendorAdmin$ = this.role$.pipe(map(role => role === EmployeeRole.VendorAdmin));
@@ -112,6 +114,8 @@ export class SidenavComponent extends BaseComponent implements OnInit {
     this.isMastersTabActive = Boolean(url.match(/^\/masters/));
     this.isServicesTabActive = Boolean(url.match(/^\/services/));
     this.isServicesViewTabActive = Boolean(url.match(/^\/all-services/));
+    this.isMyOrdersTabActive = Boolean(url.match(/^\/my-orders/));
+    this.isMyReviewsTabActive = Boolean(url.match(/^\/my-reviews/));
   //   if (user.Employee.role === EmployeeRole.SuperAdmin) {
   //     const hasQueryParams = url.indexOf('?') !== -1;
   //     const pureUrl = hasQueryParams ? url.slice(0, url.indexOf('?')) : url;

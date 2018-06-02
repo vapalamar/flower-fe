@@ -5,6 +5,7 @@ import { AppLayoutComponent } from './app-layout/app-layout.component';
 import { AuthenticatedGuard } from './shared/authenticated/authenticated.guard';
 import { NonAuthenticatedGuard } from './shared/non-authenticated/non-authenticated.guard';
 import { VendorRoleGuard } from './shared/vendor/vendor.guard';
+import { ClientRoleGuard } from './shared/client/client.guard';
 
 const routes: Routes = [
   {
@@ -53,6 +54,16 @@ const routes: Routes = [
             loadChildren: 'app/services/services.module#ServicesModule',
           }
         ]
+      },
+      {
+        path: 'my-reviews',
+        canActivate: [ClientRoleGuard],
+        loadChildren: 'app/client-reviews/client-reviews.module#ClientReviewsModule'
+      },
+      {
+        path: 'my-orders',
+        canActivate: [ClientRoleGuard],
+        loadChildren: 'app/client-orders/client-orders.module#ClientOrdersModule'
       },
       {
         path: '',

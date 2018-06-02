@@ -33,6 +33,20 @@
             </a>
           </li>
         </ng-template>
+        <ng-template [ngIf]="isClient">
+          <li>
+            <a routerLink="/my-orders" id="menu-services" [class.active]="isMyOrdersTabActive">
+              <i class="fas fa-shopping-basket"></i>
+              <span>My Orders</span>
+            </a>
+          </li>
+          <li>
+            <a routerLink="/my-reviews" id="menu-services" [class.active]="isMyReviewsTabActive">
+              <i class="fas fa-pencil-alt"></i>
+              <span>My Reviews</span>
+            </a>
+          </li>
+        </ng-template>
         <!-- <ng-template [ngIf]="((isClientViewOnly$ | async) || (isVendor$ | async) || (isSuperAdmin$ | async))">
           <li>
             <a routerLink="/vendors" id="menu-vendors" [class.active]="isVendorsRouteActive" tooltip="Vendors" placement="right" [isDisabled]="!reducedState">
