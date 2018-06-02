@@ -1,3 +1,17 @@
-<p>
-  dashboard works!
-</p>
+<div class="row">
+  <div class="col mb-4 d-flex justify-content-between tabs">
+    <div class="nav tab-nav">
+      <li routerLinkActive="active">
+        <a [routerLink]="['orders']" class="btn btn-link">
+          Orders
+        </a>
+      </li>
+      <li routerLinkActive="active">
+        <a [routerLink]="['reviews']" class="btn btn-link">
+          Reviews
+        </a>
+      </li>
+    </div>
+  </div>
+</div>
+<router-outlet></router-outlet>

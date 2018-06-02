@@ -47,7 +47,7 @@ export class RedirectService {
       if (!u || u.role === 'client') {
         this.router.navigate(['all-services']);
       } else {
-        this.router.navigate(['dashboard']);
+        this.router.navigate(['dashboard', 'orders']);
       }
     });
   }
