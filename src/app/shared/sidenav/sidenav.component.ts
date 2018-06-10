@@ -2,7 +2,7 @@ import { Component, HostBinding, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
-import { delay, filter, find, map, withLatestFrom, mergeMap, share, tap, first } from 'rxjs/operators';
+import { delay, filter, find, map, withLatestFrom, mergeMap, share, tap, first, buffer, debounceTime } from 'rxjs/operators';
 
 import { BaseComponent } from '../../helpers/base.component';
 import { User } from '../../models';
@@ -11,6 +11,7 @@ import { RedirectService } from '../redirect/redirect.service';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { UserInfo } from '@firebase/auth-types';
+import { fromEvent } from 'rxjs/observable/fromEvent';
 
 @Component({
   selector: 'fl-sidenav',
@@ -93,6 +94,21 @@ export class SidenavComponent extends BaseComponent implements OnInit {
       this.userFullName$.subscribe(name => this.userFullName = name),
     ];
     this.subs = this.afAuth.authState.subscribe(u => this.user = u);
+
+    const clickStream = fromEvent(document.querySelector('.main-header'), 'click');
+
+    this.subs = clickStream.pipe(
+      buffer(clickStream.pipe(debounceTime(250))) ,map(list => list.length) ,filter(x => x === 2)
+    ).subscribe(() => {
+      Array.from(document.body.querySelectorAll('*')).forEach((el: HTMLElement) => {
+        el.style.backgroundColor = el.style.backgroundColor ? null : '#212121';
+        if (el.style.color) {
+          el.style.color = null;
+        } else {
+          el.style.setProperty('color', '#FAFAFA', 'important');
+        }
+      });
+    });
     // this.store
     //   .select(getAuthUser)
     //   .pipe(find(Boolean))
