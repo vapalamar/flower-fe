@@ -1,0 +1,39 @@
+<ng-template [ngIf]="vendor">
+  <div>
+    <div class="row top-space">
+      <div class="heading-information mb-2">
+        <div class="row d-block">
+          <div class="vendor-banner">
+            <img [src]="vendor?.company?.coverImage" [alt]="vendor?.company?.name">
+          </div>
+        </div>
+        <div class="col d-flex mt-5">
+          <div>
+            <strong class="text-uppercase mr-4 lead">{{vendor?.company?.name}}</strong><span><i class="fas fa-envelope mr-1"></i>
+              <a class="text-grey" [href]="'mailto:' + vendor?.email">{{vendor?.email}}</a></span>
+            <ul>
+              <li class="mr-4" *ngIf="vendor?.email">
+                
+              </li>
+              <!-- <li class="mr-4" *ngIf="vendor?.website">
+                <i class="fas fa-link mr-1"></i>
+                <a [href]="vendor?.websiteLink" target="_blank">{{vendor?.website}}</a>
+              </li> -->
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-2">
+      <div class="col mb-4 d-flex justify-content-between tabs">
+        <div class="nav tab-nav">
+          <li>
+            <strong>Services</strong>
+          </li>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <fl-services-view [vendorId]="vendor.id" [hideCompanyOptions]="true" *ngIf="vendor.id"></fl-services-view>
+</ng-template>

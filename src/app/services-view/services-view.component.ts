@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { BaseComponent } from '../helpers/base.component';
@@ -17,6 +17,8 @@ import { combineLatest } from 'rxjs/observable/combineLatest';
 })
 export class ServicesViewComponent extends BaseComponent implements OnInit {
   @ViewChild('successModal') successModal: ModalDirective;
+  @Input() vendorId;
+  @Input() hideCompanyOptions = false;
   services: any[];
   user: any;
   bsModalRef: BsModalRef;
@@ -40,7 +42,10 @@ export class ServicesViewComponent extends BaseComponent implements OnInit {
     combineLatest(
       users, this.route.queryParams
     ).subscribe(([users, params]) => {
-      const usersArray = entries<any>(users).map(([id, user]) => ({id, ...user}));
+      let usersArray = entries<any>(users).map(([id, user]) => ({id, ...user}));
+      if (this.vendorId) {
+        usersArray = usersArray.filter(({id}) => id === this.vendorId);
+      }
       this.services = usersArray.reduce((acc, user) => {
         const services = entries(user.services || {}).map(([id, s]) => ({...s, id, owner: omit(user, 'services')}));
         return acc.concat(services);

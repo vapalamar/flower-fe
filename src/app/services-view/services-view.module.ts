@@ -14,6 +14,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     BsDropdownModule,
     ModalModule,
   ],
-  declarations: [ServicesViewComponent]
+  declarations: [ServicesViewComponent],
+  exports: [ServicesViewComponent]
 })
 export class ServicesViewModule { }

@@ -23,6 +23,16 @@ const routes: Routes = [
     ]
   },
   {
+    path: 'companies',
+    component: AppLayoutComponent,
+    children: [
+      {
+        path: ':id',
+        loadChildren: 'app/vendor-details/vendor-details.module#VendorDetailsModule'
+      }
+    ]
+  },
+  {
     path: '',
     component: AppLayoutComponent,
     canActivateChild: [AuthenticatedGuard],
