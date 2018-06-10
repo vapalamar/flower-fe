@@ -4,6 +4,7 @@ import { ServicesViewComponent } from './services-view.component';
 import { ServicesViewRoutingModule } from './services-view-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 @NgModule({
   imports: [
@@ -11,6 +12,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
     ServicesViewRoutingModule,
     SharedModule,
     BsDropdownModule,
+    ModalModule,
   ],
   declarations: [ServicesViewComponent]
 })

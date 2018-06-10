@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ClipboardModule } from 'ng2-clipboard';
 import { ServicesComponent } from './services.component';
 import { ServicesRoutingModule } from './services-routing,module';
 import { SharedModule } from '../shared/shared.module';
@@ -8,7 +9,8 @@ import { SharedModule } from '../shared/shared.module';
   imports: [
     CommonModule,
     ServicesRoutingModule,
-    SharedModule
+    SharedModule,
+    ClipboardModule
   ],
   declarations: [ServicesComponent]
 })

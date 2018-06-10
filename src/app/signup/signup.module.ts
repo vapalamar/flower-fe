@@ -18,7 +18,6 @@ import { SignUpComponent } from './signup.component';
     NgxMaskModule,
     PopoverModule,
     ModalModule,
-    ModalModule
   ],
   declarations: [SignUpComponent],
 })

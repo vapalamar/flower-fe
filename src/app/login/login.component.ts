@@ -38,7 +38,9 @@ export class LoginComponent implements OnInit {
       return;
     }
     this.formDisabled = true;
+
     this.store.dispatch(new Login(this.form.value));
+    
     this.error$ = this.store
       .select(hasLoginError)
       .pipe(find(error => Boolean(error)))

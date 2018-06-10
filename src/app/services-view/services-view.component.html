@@ -85,3 +85,16 @@
     </tbody>
   </table>
 </div>
+
+<div class="modal fade" bsModal #successModal="bs-modal" [config]="{ backdrop: 'static', size: 'lg', centered: true }">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="text-center">
+          <h4 class="modal-title pull-left">Thank you!</h4>
+            <p>You can close the window now.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
