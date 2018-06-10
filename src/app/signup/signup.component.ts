@@ -14,6 +14,7 @@ import { filter, finalize, find, mergeMap, tap, first } from 'rxjs/operators';
 import { Subscription } from 'rxjs/Subscription';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { firebase } from '@firebase/app';
+import * as uuid from 'uuid';
 
 import { ApiService } from '../api';
 import { defaultImage, imageSize } from '../app.constants';
@@ -25,6 +26,7 @@ import * as validators from '../shared/validators/validators';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { fromPromise } from 'rxjs/observable/fromPromise';
 import { switchMap } from 'rxjs/operator/switchMap';
+import { AngularFireStorage } from 'angularfire2/storage';
 
 const stepsValidityConf = [
   ['user.firstName', 'user.lastName', 'user.email', 'user.password'],
@@ -84,7 +86,8 @@ export class SignUpComponent extends BaseComponent implements OnInit {
     private fileHelper: FileHelperService,
     @Inject(PLATFORM_ID) private platformId: Object,
     private afAuth: AngularFireAuth,
-    private afDB: AngularFireDatabase
+    private afDB: AngularFireDatabase,
+    private afStorage: AngularFireStorage
   ) {
     super();
   }
@@ -131,6 +134,7 @@ export class SignUpComponent extends BaseComponent implements OnInit {
           [validators.startsWithLetterOrDigit, Validators.maxLength(this.maxLengths.company.name)],
         ],
         description: [''],
+        coverImage: ['']
       }),
     });
   }
@@ -149,13 +153,14 @@ export class SignUpComponent extends BaseComponent implements OnInit {
     });
   }
 
-  async createProfile() {
+  createProfile() {
     const user = this.form.get('user').value;
     const company = this.form.get('company').value;
     this.formDisabled = true;
 
+    const putFile = company.coverImage ? this.afStorage.ref(`files/${uuid()}`).put(company.coverImage) : Promise.resolve(null) as any;
     const createUser$ = fromPromise(this.afAuth.auth.createUserWithEmailAndPassword(user.email, user.password));
-    const userData = id => this.afDB.database.ref(`/users/${id}`).set({
+    const userData = id => putFile.then(coverImage => this.afDB.database.ref(`/users/${id}`).set({
       firstName: user.firstName,
       lastName: user.lastName,
       email: user.email,
@@ -164,12 +169,13 @@ export class SignUpComponent extends BaseComponent implements OnInit {
         ? { 
           company: {
             name: company.name,
-            description: company.description
+            description: company.description,
+            coverImage: (coverImage && coverImage.downloadURL) || ''
           }
         } 
         : {}
       )
-    });
+    }));
     const userData$ = () => this.afAuth.authState.pipe(
       filter(u => u && !!u.uid),
       mergeMap(token => fromPromise(userData(token.uid)))

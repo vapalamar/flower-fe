@@ -78,6 +78,13 @@
               <fl-control-messages [control]="form.get('company.name')"></fl-control-messages>
             </div>
           </div>
+          <div class="col">
+            <div class="user-photo">
+              <label>Company cover</label>
+              <fl-image-select formControlName="coverImage" [placeholder]="defaultImage.company.logo"
+                [iconUpload]="true" [size]="imageSize.company.cover"></fl-image-select>
+            </div>
+          </div>
         </div>
         <div class="form-group full-width col p0">
           <label for="description">About Your Company</label>
@@ -85,110 +92,6 @@
           <fl-control-messages [control]="form.get('company.description')"></fl-control-messages>
         </div>
       </div>
-      <!-- <div *ngIf="currStep === 2" formGroupName="company">
-        <h1 class="text-center">Lets start with some basic info</h1>
-        <div class="step-holder">
-          <div class="form-label">
-            <input type="text" id="company_name" class="form-control" formControlName="name" [maxlength]="maxLengths.company.name" (blur)="checkCompanyName()"
-            />
-            <label for="company_name">Company Name</label>
-            <avi-control-messages [control]="form.get('company.name')"></avi-control-messages>
-          </div>
-          <div class="form-label">
-            <input type="text" id="website" class="form-control" formControlName="website" />
-            <label for="website">Company Website</label>
-            <avi-control-messages [control]="form.get('company.website')" [messages]="{ website: 'Please enter valid website. E.g. avisare.com' }">
-            </avi-control-messages>
-          </div>
-          <div class="form-label">
-            <input formControlName="companyEmail" type="email" id="company-email" class="form-control" (blur)="checkCompanyEmail()" />
-            <label for="company-email">Company Email</label>
-            <avi-control-messages [control]="form.get('company.companyEmail')"></avi-control-messages>
-          </div>
-          <div formArrayName="Addresses">
-            <div formGroupName="0">
-              <div class="form-label">
-                <avi-g-place-autocomplete inputId="Addresses-0-gPlace" disableClearAfterChoose- formControlName="gPlace"></avi-g-place-autocomplete>
-                <label for="Addresses-0-gPlace">Headquarters Street Address</label>
-                <avi-control-messages [control]="form.get('company.Addresses.0.gPlace')"></avi-control-messages>
-              </div>
-              <div class="form-label">
-                <input type="text" id="Addresses-0-addressLineTwo" class="form-control" formControlName="additional" [maxlength]="maxLengths.company.Addresses.additional"
-                />
-                <label for="Addresses-0-addressLineTwo">Address Line 2</label>
-                <span class="form-hint">You can add in your suite number here</span>
-              </div>
-            </div>
-          </div>
-          <div class="form-label">
-            <input type="tel" id="phoneNumber" class="form-control" formControlName="phoneNumber" mask="(000) 000-0000" />
-            <label for="phoneNumber">Main Company Phone Number</label>
-            <avi-control-messages [control]="form.get('company.phoneNumber')"></avi-control-messages>
-          </div>
-        </div>
-      </div> -->
-      <!-- <div *ngIf="currStep === 3" formGroupName="company">
-        <div class="step-holder">
-          <h2 class="text-center mb-5">Now for the good stuff! Tell us about your company.</h2>
-          <div formArrayName="BusinessTypes">
-            <div class="form-label" formGroupName="0">
-              <avi-select *ngIf="businessTypes" [id]="'qa-business-category'" [options]="businessTypes" formControlName="id" showSearch="true"></avi-select>
-              <label id="qa-what-do-you-do">What Do You Do? (Business Category)</label>
-              <avi-control-messages [control]="form.get('company.BusinessTypes.0.id')"></avi-control-messages>
-            </div>
-          </div>
-          <div class="form-label">
-            <avi-select *ngIf="industries" [id]="'qa-industries-you-service'" [options]="industries" formControlName="Industries" [multiple]="true" [showSearch]="true"
-              [accessCustomItem]="false">
-            </avi-select>
-            <label id="qa-who-are-your-client">Who Are Your Clients? (Industries You Service), And Have A Proven Track Record</label>
-            <avi-control-messages [control]="form.get('company.Industries')"></avi-control-messages>
-          </div>
-          <div>
-            <div class="form-label form-hint-text">
-              <div class="mb-1">Press enter after typing in a custom product and service or select one from the drop down.</div>
-              <avi-select *ngIf="services" [id]="'qa-what-products-services'" [options]="services" formControlName="Services" [showSearch]="true" [accessVirtualScroll]="true"
-                [accessCustomItem]="true" [multiple]="true" [maxLengthItem]="maxLengths.company.services">
-              </avi-select>
-              <label id="qa-what-products-and-services">What Products &amp; Services Do You Offer?</label>
-              <avi-control-messages [control]="form.get('company.Services')"></avi-control-messages>
-            </div>
-          </div>
-        </div>
-      </div> -->
-      <!-- <div *ngIf="currStep === 4" formGroupName="company">
-        <div class="step-holder">
-          <h3 class="text-center">Last Step! Show off your brand and create your company account.</h3>
-          <ng-template [ngIf]="!scrappingInProgress" [ngIfElse]="scrappingLoading">
-            <div class="form-group">
-              <label for="about">About Your Company</label>
-              <avi-editor formControlName="about" [id]="about" [maxLength]="maxLengths.company.about"></avi-editor>
-              <avi-control-messages [control]="form.get('company.about')"></avi-control-messages>
-            </div>
-            <div class="row">
-              <div class="col-3">
-                <div class="form-group">
-                  <label>Company Logo
-                    <div class="mark">({{imageSize.company.logo}}px:{{imageSize.company.logo}}px)</div>
-                  </label>
-                  <avi-image-select class="company-logo" formControlName="logo" [placeholder]="defaultImage.company.logo" [size]="imageSize.company.logo"></avi-image-select>
-                </div>
-              </div>
-              <div class="col-9">
-                <div class="form-group">
-                  <label>Background Image
-                    <div class="mark">({{imageSize.company.cover.width}}px:{{imageSize.company.cover.height}}px)</div>
-                  </label>
-                  <avi-image-select class="header-image" formControlName="cover" [placeholder]="defaultImage.company.cover" [size]="imageSize.company.cover"></avi-image-select>
-                </div>
-              </div>
-            </div>
-          </ng-template>
-          <ng-template #scrappingLoading>
-            <avi-spinner></avi-spinner>
-          </ng-template>
-        </div>
-      </div> -->
       <div class="form-row">
         <div class="col">
           <button class="btn btn-success btn-block"  id="qa-create-account" (click)="createProfile()" [disabled]="formDisabled">
@@ -205,11 +108,6 @@
   <div class="modal-dialog modal-md">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <div class="text-center block w-100">
-          <div class="logo dib">
-            <img src="assets/images/logo/logo.svg" alt="Avisare">
-          </div>
-        </div>
         <button type="button" class="close pull-right" aria-label="Close" (click)="successModal.hide()">
           <span aria-hidden="true">&times;</span>
         </button>
